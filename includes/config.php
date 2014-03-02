@@ -1,4 +1,16 @@
 <?php
+function is_SSL(){  
+if(!isset($_SERVER['HTTPS']))  
+return FALSE;  
+ if($_SERVER['HTTPS'] === 1){  //Apache  
+  return TRUE;  
+ }elseif($_SERVER['HTTPS'] === 'on'){ //IIS  
+  return TRUE;  
+ }elseif($_SERVER['SERVER_PORT'] == 443){ //其他  
+  return TRUE;  
+ }  
+ return FALSE;  
+}  
 
 /* * 通用设置 */
 date_default_timezone_set("Asia/Shanghai");//时区
@@ -6,7 +18,7 @@ error_reporting(0);//隐藏所有错误报告
 
 /* * 页面地址 - 请依照你的域名更改 */
 define("SITEHOST", "http://myauth.us/");//普通
-define("SITEHOSTSAFEMODE", "https://safe.myauth.us/");//SSL，若无SSL请与普通一样
+define("SITEHOSTSAFEMODE", "https://myauth.us/");//SSL，若无SSL请与普通一样
 
 // ** MySQL 设置 - 具体信息来自您正在使用的主机 - 请首先建立auth数据库,然后导入根目录中的auth.sql ** //
 /* * 数据库名称 */
@@ -44,8 +56,11 @@ define('SMTP_PASSWD', "12345678");
 define('ZHANGXUAN',true);
 
 //是否SSL
-define('SSLMODE',0);//是SSL的主机请设置为1
-
+if(is_SSL()){
+	define('SSLMODE',1);
+}else{
+	define('SSLMODE',0);
+}
 $dbconnect = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME); //连接数据库
 @mysqli_select_db($dbconnect, DB_NAME);
 ?>
