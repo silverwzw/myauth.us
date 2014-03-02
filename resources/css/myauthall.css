@@ -123,9 +123,9 @@ max-width: 75px;
 .ui-button span,
 .ui-cancel span { outline: none; display: inline-block; background-repeat: no-repeat }
 .ui-button .button-left,
-.ui-button .button-right { overflow:hidden }
+.ui-button .button-right { overflow:hidden;font-family: 微软雅黑, Microsoft YaHei, Helvetica, Tahoma, StSun, 宋体, SimSun, sans-serif; }
 .ie7 .ui-button .button-left,
-.ie7 .ui-button .button-right { overflow:visible }
+.ie7 .ui-button .button-right { overflow:visible;font-family: 微软雅黑, Microsoft YaHei, Helvetica, Tahoma, StSun, 宋体, SimSun, sans-serif; }
 .ui-button.disabled,
 .ui-button.disabled:hover,
 .ui-button.disabled.hover { cursor: default; }
