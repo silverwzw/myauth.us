@@ -29,8 +29,8 @@ function tableshowtext($logincheck, $user) {
                 $txtbuttonmoren = '<button id="morenauthbutton' . $rowauth['auth_id'] . '" class="ui-button button1" onclick="authmoren(' . $rowauth['auth_id'] . ')"><span class="button-left"><span id="morenanquanlin' . $rowauth['auth_id'] . '"  class="button-right">设置默认</span></span></button>';
             }
             $linkuel = 'onclick="location.href = \'' . SITEHOST . 'normalauth.php?authid=' . $rowauth['auth_id'] . '\'"';
-            SSLMODE == 0 ? $txtdisabalebut = "" : $txtdisabalebut = 'disabled="disabled"';
-            SSLMODE == 0 ? $onclickdata = 'authsync(' . $rowauth['auth_id'] . ')' : $onclickdata = 'alert(\'若要校准时间，请前往'.SITEHOST.'\')';
+            $txtdisabalebut = "";
+            $onclickdata = 'authsync(' . $rowauth['auth_id'] . ')';
             $returntxt = $returntxt . '<tr class="parent-row" id="henxiangtr' . $rowauth['auth_id'] . '">
                              <td ' . $linkuel . ' class="normaltd authbianhao" valign="top"><img class="tdimgauth" src="' . $imgurl[$rowauth['auth_img']] . '" alt="">&nbsp;<a class="authida" href="normalauth.php?authid=' . $rowauth['auth_id'] . '">' . $rowauth['auth_id'] . '</a></td>
                                 <td class="normaltd authmincheng" valign="top"><span id="morenpicspan' . $rowauth['auth_id'] . '">' . $namebeizhu . '</span><span ondblclick="ShowElement(this,' . $rowauth['auth_id'] . ')" id="authnamecode' . $rowauth['auth_id'] . '">' . $rowauth['auth_name'] . '</span></td>
