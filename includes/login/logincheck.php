@@ -24,12 +24,15 @@ if (isset($_POST['username']) && isset($_POST['password']) && !isset($_POST['let
         $_SESSION['loginuser'] = $user;
         if (isset($_POST['persistLogin']) && $_POST['persistLogin'] == "on") {
             $cookievalue = randstr();
-            $sql = "SELECT `user_id` FROM `users` WHERE `user_name`='$user'";
-            $result = mysqli_query($dbconnect, $sql);
             $rowtemp = mysqli_fetch_array($result);
             $user_id = $rowtemp['user_id'];
+            $user_thistimelogin_ip=$rowtemp['user_thistimelogin_ip'];
+            $user_thislogin_time=$rowtemp['user_thislogin_time'];
             $login_time = date('Y-m-d H:i:s');
-            $sql = "INSERT INTO `cookiedata`(`user_id`, `user_name`, `user_cookie`, `login_time`) VALUES ('$user_id','$user','$cookievalue','$login_time')";
+            $userip=$_SERVER["REMOTE_ADDR"];
+            $sql = "INSERT INTO `cookiedata`(`user_id`, `user_name`, `user_cookie`, `login_time`,`user_login_ip`) VALUES ('$user_id','$user','$cookievalue','$login_time','$userip')";
+            @mysqli_query($dbconnect, $sql);
+            $sql = "UPDATE `users` SET `user_lastlogin_ip`='$user_thistimelogin_ip',`user_thistimelogin_ip`='$userip',`user_lastlogin_time`='$user_thislogin_time', `user_thislogin_time`='$login_time' WHERE `user_id`='$user_id'";
             @mysqli_query($dbconnect, $sql);
             setcookie("loginname", $user, time() + 30 * 24 * 60 * 60, "/");
             setcookie("loginid", $cookievalue, time() + 30 * 24 * 60 * 60, "/");

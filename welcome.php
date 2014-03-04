@@ -1,6 +1,7 @@
 <?php
+
 include('includes/config.php');
-$topnavvalue="WELCOME";
+$topnavvalue = "WELCOME";
 include('includes/html_toubu/html_toubu.php');
 include('includes/page_inc/header_normal.php');
 include('includes/page_inc/welcome_inc.php');

@@ -1,4 +1,5 @@
 <?php
+
 defined("ZHANGXUAN") or die("no hacker.");
 $resetmod = -1; //1开始输入，2确认中
 if (isset($_GET['userid']) && !empty($_GET['userid']) && isset($_GET['token']) && !empty($_GET['token'])) {

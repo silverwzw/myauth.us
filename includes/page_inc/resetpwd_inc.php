@@ -1,15 +1,15 @@
 <?php
 defined("ZHANGXUAN") or die("no hacker.");
 ?>
-<link rel="stylesheet" href="../../resources/css/resetpsd.css" type="text/css" />
-<script type="text/javascript" src="../../resources/js/class-inheritance.js"></script>
-<script type="text/javascript" src="../../resources/js/inputs.js"></script>
-<script type="text/javascript" src="../../resources/js/password.js"></script>
+<link rel="stylesheet" href="resources/css/resetpsd.css" type="text/css" />
+<script type="text/javascript" src="resources/js/class-inheritance.js"></script>
+<script type="text/javascript" src="resources/js/inputs.js"></script>
+<script type="text/javascript" src="resources/js/password.js"></script>
 <div id="layout-middle">
     <div class="homewrapper">
         <div id="content">
             <?php
-            if ($resetmod==2 && $resetpsdpostdataerror == 3)
+            if ($resetmod == 2 && $resetpsdpostdataerror == 3)
                 echo '<div class="alert error closeable border-4 glow-shadow"><div class="alert-inner"><div class="alert-message"><p class="title"><strong><a name="form-errors"> </a>发生下列错误：</strong></p><ul><li>' . '两次输入的密码不一致' . '</li></ul></div></div></div>';
             ?>
             <div id="page-header">
@@ -23,10 +23,10 @@ defined("ZHANGXUAN") or die("no hacker.");
                     <div class="column column-left">
                         <div class="password-entry">
                             <span class="clear"><!-- --></span>
-                            <form method="post" action="<?php echo SITEHOST;?>resetpwd.php" id="change-settings" novalidate="novalidate">
+                            <form method="post" action="<?php echo SITEHOST; ?>resetpwd.php" id="change-settings" novalidate="novalidate">
                                 <div class="input-hidden">
-                                    <input type="hidden" id="csrftoken" name="user_id" value="<?php echo $userid;?>" />
-                                    <input type="hidden" id="csrftoken" name="user_token" value="<?php echo $tokentoshow;?>" />
+                                    <input type="hidden" id="csrftoken" name="user_id" value="<?php echo $userid; ?>" />
+                                    <input type="hidden" id="csrftoken" name="user_token" value="<?php echo $tokentoshow; ?>" />
                                 </div>
                                 <div class="input-row input-row-text">
                                     <span class="input-left">
@@ -39,7 +39,7 @@ defined("ZHANGXUAN") or die("no hacker.");
                                     </span><!--
                                     --><span class="input-right">
                                         <span class="input-text input-text-small">
-                                            <input readonly = "readonly" type="text" id="oldPassword" name="oldPassword" value="<?php echo $useremailadd;?>" class="small border-5 glow-shadow-2" autocomplete="off" onpaste="return false;" maxlength="320" tabindex="1" required="required" placeholder="输入旧密码" />
+                                            <input readonly = "readonly" type="text" id="oldPassword" name="oldPassword" value="<?php echo $useremailadd; ?>" class="small border-5 glow-shadow-2" autocomplete="off" onpaste="return false;" maxlength="320" tabindex="1" required="required" placeholder="输入旧密码" />
                                             <span class="inline-message " id="oldPassword-message"> </span>
                                         </span>
                                     </span>
@@ -94,7 +94,7 @@ defined("ZHANGXUAN") or die("no hacker.");
                                     <div class="input-left"></div><!--
                                     --><div class="input-right">
                                         <button class="ui-button button1" type="submit" id="password-submit" tabindex="1"><span class="button-left"><span class="button-right">继续</span></span></button>
-                                        <a class="ui-cancel " href="<?php echo SITEHOST;?>" tabindex="1">
+                                        <a class="ui-cancel " href="<?php echo SITEHOST; ?>" tabindex="1">
                                             <span>
                                                 取消 </span>
                                         </a>
@@ -164,7 +164,7 @@ defined("ZHANGXUAN") or die("no hacker.");
                         passwordFields: [
                             '#newPassword',
                             '#newPasswordVerify'
-                        ],emailAddress: '<?php echo $username;?>'
+                        ],emailAddress: '<?php echo $username; ?>'
                     });
                 });
                 //]]>

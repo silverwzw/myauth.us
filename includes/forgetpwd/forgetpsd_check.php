@@ -1,23 +1,24 @@
 <?php
+
 defined("ZHANGXUAN") or die("no hacker.");
 session_start();
 $pwdfinderrorid = -1; //1验证码错误,2用户不存在4输入错误,3信息与数据库中的不一样,5用户名存在非法字符，用户名仅允许使用中文、数字、字母、下划线，6发送邮件失败
 if (isset($_POST["letters_code"]) && !empty($_POST["letters_code"]) && md5(strtolower($_POST["letters_code"])) == $_SESSION['letters_code']) {   //验证码正确才能继续搞啊
     if (isset($_POST["firstName"]) && !empty($_POST["firstName"]) && isset($_POST["email"]) && !empty($_POST["email"]) && isset($_POST["question1"]) && !empty($_POST["question1"]) && isset($_POST["answer1"]) && !empty($_POST["answer1"])) {                  //要有数据啊
         if (checkzhongwenzimushuzixiahuaxian($_POST["firstName"]) && checkquestionvalue($_POST['question1']) && valid_email($_POST["email"])) {
-            $user = mysqli_real_escape_string($dbconnect,htmlspecialchars($_POST["firstName"], ENT_QUOTES));
-            $emailadd = mysqli_real_escape_string($dbconnect,htmlspecialchars($_POST['email']));
-            $question1 = mysqli_real_escape_string($dbconnect,htmlspecialchars($_POST['question1']));
-            $answer1 = mysqli_real_escape_string($dbconnect,htmlspecialchars($_POST['answer1']));
+            $user = mysqli_real_escape_string($dbconnect, htmlspecialchars($_POST["firstName"], ENT_QUOTES));
+            $emailadd = mysqli_real_escape_string($dbconnect, htmlspecialchars($_POST['email']));
+            $question1 = mysqli_real_escape_string($dbconnect, htmlspecialchars($_POST['question1']));
+            $answer1 = mysqli_real_escape_string($dbconnect, htmlspecialchars($_POST['answer1']));
             $emailfind = randstr();
             $sql = "SELECT * FROM `users` WHERE `user_name`='$user'";
-            $result = mysqli_query($dbconnect,$sql);
+            $result = mysqli_query($dbconnect, $sql);
             $rowuserdata = mysqli_fetch_array($result);
             if ($rowuserdata) {
                 if ($rowuserdata['user_email'] == $emailadd && $rowuserdata['user_question'] == $question1 && $rowuserdata['user_answer'] == $answer1) {
                     $userid = $rowuserdata['user_id'];
                     $sql = "UPDATE `users` SET `user_email_find_code`='$emailfind',`user_email_find_mode`='1' WHERE `user_id`='$userid'";
-                    @mysqli_query($dbconnect,$sql);
+                    @mysqli_query($dbconnect, $sql);
                     $findurl = SITEHOST . "findpwdmail.php?userid=$userid&pwdcheckid=$emailfind";
                     $mailtxt = "本邮件为系统自动发送，您正在申请重置您账号的密码<br><br>" .
                             "您的用户名为：$user<br><br>" .
@@ -27,8 +28,8 @@ if (isset($_POST["letters_code"]) && !empty($_POST["letters_code"]) && md5(strto
                             "<a href='$findurl' target='_blank'>$findurl</a><br><br>" .
                             "如果这不是您操作的，请忽略本邮件，绝对不要点击以上链接。<br><br>" .
                             "本邮件为自动发送，请不要回复，因为没人会看的。<br><br>" .
-                            "竹井诗织里<br><br>".
-							date('Y-m-d');
+                            "竹井詩織里<br><br>" .
+                            date('Y-m-d');
                     try {
                         $mail = new PHPMailer(true); //创建新的邮件
 
@@ -45,7 +46,7 @@ if (isset($_POST["letters_code"]) && !empty($_POST["letters_code"]) && md5(strto
                         //$mail->IsSendmail();  // 如果报错请取消注释
 
                         $mail->From = SMTP_USERNAME;
-                        $mail->FromName = "=?utf-8?B?" . base64_encode("战网安全令在线版开发团队") . "?=";
+                        $mail->FromName = "=?utf-8?B?" . base64_encode("竹井詩織里(战网安全令在线版)") . "?=";
 
 
                         $to = $emailadd;

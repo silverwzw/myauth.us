@@ -1,4 +1,5 @@
 <?php
+
 defined("ZHANGXUAN") or die("no hacker.");
 session_start();
 $changemailadderrorid = -1; //1验证码错误,2提交数据有错，3没登入玩个P，4验证信息错了,5不是邮箱格式,6，两次邮箱地址一样，7邮件发送失败
@@ -9,9 +10,9 @@ if (isset($_POST["letters_code"]) && !empty($_POST["letters_code"]) && md5(strto
             $result = mysqli_query($dbconnect, $sql);
             $rowtemp = mysqli_fetch_array($result);
             $user_id = $rowtemp['user_id'];
-            $useremailadd = mysqli_real_escape_string($dbconnect,htmlspecialchars($_POST["email"]));
-            $userquestion = mysqli_real_escape_string($dbconnect,htmlspecialchars($_POST["question1"]));
-            $useranswer = mysqli_real_escape_string($dbconnect,htmlspecialchars($_POST["answer1"]));
+            $useremailadd = mysqli_real_escape_string($dbconnect, htmlspecialchars($_POST["email"]));
+            $userquestion = mysqli_real_escape_string($dbconnect, htmlspecialchars($_POST["question1"]));
+            $useranswer = mysqli_real_escape_string($dbconnect, htmlspecialchars($_POST["answer1"]));
             $mailaddused = $rowtemp['user_email'];
             if ($rowtemp['user_question'] == $userquestion && $rowtemp['user_answer'] == $useranswer) {
                 if (valid_email($useremailadd)) {
@@ -28,8 +29,8 @@ if (isset($_POST["letters_code"]) && !empty($_POST["letters_code"]) && md5(strto
                                 "<a href='$mailtxtcheckurl' target='_blank'>$mailtxtcheckurl</a><br><br>" .
                                 "如果这不是您操作的，请不要点击以上链接，并进入我的账号页面更改邮箱地址。<br><br>" .
                                 "本邮件为自动发送，请不要回复，因为没人会看的。<br><br>" .
-                                "竹井诗织里<br><br>".
-								date('Y-m-d');
+                                "竹井詩織里<br><br>" .
+                                date('Y-m-d');
                         try {
                             $mail = new PHPMailer(true); //创建新的邮件
 
@@ -42,11 +43,11 @@ if (isset($_POST["letters_code"]) && !empty($_POST["letters_code"]) && md5(strto
                             $mail->Host = SMTP_HOST; // SMTP服务器
                             $mail->Username = SMTP_USERNAME;     // SMTP用户名
                             $mail->Password = SMTP_PASSWD;            // SMTP 密码
-                            $mail->SMTPSecure = "ssl"; 
+                            $mail->SMTPSecure = "ssl";
                             //$mail->IsSendmail();  // 如果报错请取消注释
 
                             $mail->From = SMTP_USERNAME;
-                            $mail->FromName = "=?utf-8?B?" . base64_encode("战网安全令在线版开发团队") . "?=";
+                            $mail->FromName = "=?utf-8?B?" . base64_encode("竹井詩織里(战网安全令在线版)") . "?=";
 
                             $to = $useremailadd;
 
@@ -63,7 +64,7 @@ if (isset($_POST["letters_code"]) && !empty($_POST["letters_code"]) && md5(strto
 
                             $mail->Send();
                             $sql = "UPDATE `users` SET `user_email`='$useremailadd',`user_email_checked`='0',`user_email_checkid`='$newcheckid' WHERE `user_name`='$user'";
-                            mysqli_query($dbconnect,$sql);
+                            mysqli_query($dbconnect, $sql);
                             $changemailadderrorid = 0;
                         } catch (phpmailerException $e) {
                             $changemailadderrorid = 7;

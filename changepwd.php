@@ -1,5 +1,6 @@
 <?php
-require_once('classes/class.phpmailer.php');//IXWEBHOSTING使用模式1
+
+require_once('classes/class.phpmailer.php'); //IXWEBHOSTING使用模式1
 include('includes/config.php');
 $topnavvalue = "修改密码";
 include('includes/html_toubu/html_toubu.php');

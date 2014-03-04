@@ -51,8 +51,8 @@ if ($logincheck == 0) {
             break;
         case 5:
             if ($restorecodefalse) {
-            $jumptxt = "输入的序列号与密钥/还原码不对应，请返回重试。";
-            $jumpurl = SITEHOST . "addauth.php#game-time-subscriptions";
+                $jumptxt = "输入的序列号与密钥/还原码不对应，请返回重试。";
+                $jumpurl = SITEHOST . "addauth.php#game-time-subscriptions";
             } else {
                 $jumptxt = "还原失败，请稍后重试。";
                 $jumpurl = SITEHOST . "addauth.php#game-time-subscriptions";

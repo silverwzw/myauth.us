@@ -1,6 +1,7 @@
 <?php
+
 include('includes/config.php');
-require_once('classes/class.phpmailer.php');//IXWEBHOSTING使用模式1
+require_once('classes/class.phpmailer.php'); //IXWEBHOSTING使用模式1
 include('includes/html_toubu/html_toubu_register.php');
 $topnavvalue = "账号创建";
 include('includes/register/registercheck.php');

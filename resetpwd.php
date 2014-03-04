@@ -1,6 +1,7 @@
 <?php
+
 include('includes/config.php');
-require_once('classes/class.phpmailer.php');//IXWEBHOSTING使用模式1
+require_once('classes/class.phpmailer.php'); //IXWEBHOSTING使用模式1
 $topnavvalue = "重置密码";
 include('includes/resetpsd/resetpsdmodcheck.php');
 include('includes/html_toubu/html_toubu.php');
@@ -30,7 +31,7 @@ if ($resetmod == 1) {
             include('includes/resetpsd/resetpsd_incerror_jump.php');
             break;
     }
-}elseif ($resetmod==2) {
+} elseif ($resetmod == 2) {
     include('includes/resetpsd/resetpsdpostdatacheck.php');
     switch ($resetpsdpostdataerror) {
         case 0:
@@ -52,8 +53,8 @@ if ($resetmod == 1) {
             include('includes/resetpsd/resetpsd_incerror_jump.php');
             break;
         case 3:
-            $tokentoshow=$usertoken;
-            $useremailadd=$emailadd;
+            $tokentoshow = $usertoken;
+            $useremailadd = $emailadd;
             include('includes/page_inc/resetpwd_inc.php');
             break;
         case 4:

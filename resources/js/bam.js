@@ -1,5 +1,5 @@
 $(document).ready(function() {
-	UI.initialize();
+    UI.initialize();
 });
 
 var supportToken = '';
@@ -39,75 +39,75 @@ var supportToken = '';
 
 var UI = {
 
-	buttons: {},
+    buttons: {},
 
-	notes: {},
+    notes: {},
 
-	compactInputs: {},
+    compactInputs: {},
 
-	inlineInputs: {},
+    inlineInputs: {},
 
-	parent: $('#content'),
+    parent: $('#content'),
 
-	initialize: function(parent) {
+    initialize: function(parent) {
 
-		UI.parent = parent || $('#content');
+        UI.parent = parent || $('#content');
 
-		UI.buttons = $('.ui-button', UI.parent);
-		UI.notes = $('.ui-note', UI.parent);
-		UI.compactInputs = $('.label-compact', UI.parent).parent().children('input.input');
-		UI.inlineInputs = $('input.inline-input');
+        UI.buttons = $('.ui-button', UI.parent);
+        UI.notes = $('.ui-note', UI.parent);
+        UI.compactInputs = $('.label-compact', UI.parent).parent().children('input.input');
+        UI.inlineInputs = $('input.inline-input');
 
-		if (UI.buttons.length > 0) {
-			UI._initializeButtons();
-		}
+        if (UI.buttons.length > 0) {
+            UI._initializeButtons();
+        }
 
-		if (UI.notes.length > 0) {
-			UI._initializeNotes();
-		}
+        if (UI.notes.length > 0) {
+            UI._initializeNotes();
+        }
 
-		if (UI.compactInputs.length > 0) {
-			UI._initializeCompactInputs();
-		}
+        if (UI.compactInputs.length > 0) {
+            UI._initializeCompactInputs();
+        }
 
-		if (UI.inlineInputs.length > 0) {
-			UI._initializeInlineInputs();
-		}
-	},
+        if (UI.inlineInputs.length > 0) {
+            UI._initializeInlineInputs();
+        }
+    },
 
-	_initializeInlineInputs: function() {
-		var length = UI.inlineInputs.length;
-		var i = 0;
-		for (i; i < length; i++) {
-			var input 		= UI.inlineInputs[i];
-			$(input).bind({
-				'keypress': function(e) {
-					var val = this.value;
-					if (e.keyCode == 8) {
-						if (val.length === 0) {
-							var previous = $(this).prev('input.inline-input');
-							$(previous).focus();
-						}
-					}
-				},
-				'keydown': function(e) {
-					// IE does not recognize backspace with keypress in a blank input box
-					if (!jQuery.support.cssFloat) {
-						var val = this.value;
-						if (e.keyCode == 8) {
-							if (val.length === 0) {
-								var previous = $(this).prev('input.inline-input');
-								$(previous).focus();
-							}
-						}
-					}
-				},
-				'focus': function() {
-					// need this to place the cursor at the end of the value in IE6
-					this.value = this.value;
-				},
-				'keyup': function(e) {
-					/**
+    _initializeInlineInputs: function() {
+        var length = UI.inlineInputs.length;
+        var i = 0;
+        for (i; i < length; i++) {
+            var input 		= UI.inlineInputs[i];
+            $(input).bind({
+                'keypress': function(e) {
+                    var val = this.value;
+                    if (e.keyCode == 8) {
+                        if (val.length === 0) {
+                            var previous = $(this).prev('input.inline-input');
+                            $(previous).focus();
+                        }
+                    }
+                },
+                'keydown': function(e) {
+                    // IE does not recognize backspace with keypress in a blank input box
+                    if (!jQuery.support.cssFloat) {
+                        var val = this.value;
+                        if (e.keyCode == 8) {
+                            if (val.length === 0) {
+                                var previous = $(this).prev('input.inline-input');
+                                $(previous).focus();
+                            }
+                        }
+                    }
+                },
+                'focus': function() {
+                    // need this to place the cursor at the end of the value in IE6
+                    this.value = this.value;
+                },
+                'keyup': function(e) {
+                    /**
 					  * 8:		Backspace
 					  * 9:		Tab
 					  * 16:		Shift
@@ -129,148 +129,150 @@ var UI = {
 					  * 144:	Num Lock
 					  * 145:	Scroll Lock
 					  */
-					var keys = [8, 9, 16, 17, 18, 19, 20, 27, 33, 34, 35, 36, 37, 38, 39, 40, 45, 46, 144, 145];
-					var string = keys.toString();
-					var maxlength 	= parseInt($(this).attr('maxlength'), 10);
-					var val 		= this.value;
+                    var keys = [8, 9, 16, 17, 18, 19, 20, 27, 33, 34, 35, 36, 37, 38, 39, 40, 45, 46, 144, 145];
+                    var string = keys.toString();
+                    var maxlength 	= parseInt($(this).attr('maxlength'), 10);
+                    var val 		= this.value;
 
-					if(string.indexOf(e.keyCode) == -1 && val.length === maxlength) {
-						$(this).next('input.inline-input').focus();
-					}
-				}
-			});
-		}
-	},
+                    if(string.indexOf(e.keyCode) == -1 && val.length === maxlength) {
+                        $(this).next('input.inline-input').focus();
+                    }
+                }
+            });
+        }
+    },
 
-	_initializeCompactInputs: function() {
-		var length = UI.compactInputs.length;
-		var i = length - 1;
-		if (i > 0) { do {
-			var input = UI.compactInputs[i];
-			var label =$.trim( $(input).parent().find('.label-compact strong').text());
-			$(input).val(label).bind({
-				'focus': function() {
-					if ($(this).val() === label) {
-						$(this).val('');
-					}
-				},
-				'blur': function() {
-					if ($(this).val() === '') {
-						$(this).val(label);
-					}
-				}
-			});
-		} while (i--);}
-	},
+    _initializeCompactInputs: function() {
+        var length = UI.compactInputs.length;
+        var i = length - 1;
+        if (i > 0) {
+            do {
+                var input = UI.compactInputs[i];
+                var label =$.trim( $(input).parent().find('.label-compact strong').text());
+                $(input).val(label).bind({
+                    'focus': function() {
+                        if ($(this).val() === label) {
+                            $(this).val('');
+                        }
+                    },
+                    'blur': function() {
+                        if ($(this).val() === '') {
+                            $(this).val(label);
+                        }
+                    }
+                });
+            } while (i--);
+        }
+    },
 
-	_initializeNotes: function() {
-		UI.notes.children('.note-toggler').bind({
-			'click': function() {
-				UI.showNotes(this);
-				return false;
-			}
-		});
-		UI.notes.children('.toggle-note').bind({
-			'click': function() {
-				return false;
-			}
-		});
-		UI.notes.children('.toggle-note').children('.note').children('.close-note').bind({
-			'click': function() {
-				UI.hideNotes(this);
-				return false;
-			}
-		});
-		$(document).bind({
-			'click': function() {
-				UI.hideNotes();
-			}
-		});
-	},
+    _initializeNotes: function() {
+        UI.notes.children('.note-toggler').bind({
+            'click': function() {
+                UI.showNotes(this);
+                return false;
+            }
+        });
+        UI.notes.children('.toggle-note').bind({
+            'click': function() {
+                return false;
+            }
+        });
+        UI.notes.children('.toggle-note').children('.note').children('.close-note').bind({
+            'click': function() {
+                UI.hideNotes(this);
+                return false;
+            }
+        });
+        $(document).bind({
+            'click': function() {
+                UI.hideNotes();
+            }
+        });
+    },
 
-	hideNotes: function(note) {
-		if (note === undefined) {
-			$('.toggle-note').hide();
-			$('.note-toggler').show();
-		} else {
-			var target = $(note).attr('rel');
-			$(note).parent().parent('.toggle-note').hide();
-			$('.note-toggler[rel="' + target + '"]').show();
-		}
-	},
+    hideNotes: function(note) {
+        if (note === undefined) {
+            $('.toggle-note').hide();
+            $('.note-toggler').show();
+        } else {
+            var target = $(note).attr('rel');
+            $(note).parent().parent('.toggle-note').hide();
+            $('.note-toggler[rel="' + target + '"]').show();
+        }
+    },
 
-	showNotes: function(note) {
-		if (note === undefined) {
-			$('.toggle-note').show();
-			$('.note-toggler').hide();
-		} else {
-			var target = $(note).attr('rel');
-			$(note).hide();
-			$('#' + target).show();
-		}
-	},
+    showNotes: function(note) {
+        if (note === undefined) {
+            $('.toggle-note').show();
+            $('.note-toggler').hide();
+        } else {
+            var target = $(note).attr('rel');
+            $(note).hide();
+            $('#' + target).show();
+        }
+    },
 
-	_initializeButtons: function() {
-		UI.buttons.bind({
-			'click': function(e) {
-				var button = $(this);
-				var onclick = button.attr('onclick');
-				var form = button.parents('form');
+    _initializeButtons: function() {
+        UI.buttons.bind({
+            'click': function(e) {
+                var button = $(this);
+                var onclick = button.attr('onclick');
+                var form = button.parents('form');
 
-				if ((this.tagName.toLowerCase() === 'button') && (onclick === '' || onclick === undefined || onclick === null) && (form.length > 0)) {
-					e.preventDefault();
-					e.stopPropagation();
-					form.submit();
-				}
-			},
-			'mouseover': function() {
-				$(this).addClass('hover');
-			},
-			'mouseout': function() {
-				$(this).removeClass('hover');
-			}
-		});
-	},
+                if ((this.tagName.toLowerCase() === 'button') && (onclick === '' || onclick === undefined || onclick === null) && (form.length > 0)) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    form.submit();
+                }
+            },
+            'mouseover': function() {
+                $(this).addClass('hover');
+            },
+            'mouseout': function() {
+                $(this).removeClass('hover');
+            }
+        });
+    },
 
-	freezeButton: function(target) {
-		$(target).addClass('disabled');
+    freezeButton: function(target) {
+        $(target).addClass('disabled');
 
-		if ($(target)[0].tagName.toLowerCase() === 'button') {
-			$(target).attr('disabled','disabled');
-		}
-	},
+        if ($(target)[0].tagName.toLowerCase() === 'button') {
+            $(target).attr('disabled','disabled');
+        }
+    },
 
-	wakeButton: function(target) {
-		$(target).removeClass('disabled');
+    wakeButton: function(target) {
+        $(target).removeClass('disabled');
 
-		if ($(target)[0].tagName.toLowerCase() === 'button') {
-			$(target).removeAttr('disabled');
-		}
-	},
+        if ($(target)[0].tagName.toLowerCase() === 'button') {
+            $(target).removeAttr('disabled');
+        }
+    },
 
-	processButton: function(target) {
-		$(target).addClass('processing');
+    processButton: function(target) {
+        $(target).addClass('processing');
 
-		if ($(target)[0].tagName.toLowerCase() === 'button') {
-			$(target).attr('disabled','disabled');
-		}
-	},
+        if ($(target)[0].tagName.toLowerCase() === 'button') {
+            $(target).attr('disabled','disabled');
+        }
+    },
 
-	disableButton: function(target) {
-		$(target).addClass('disabled');
+    disableButton: function(target) {
+        $(target).addClass('disabled');
 
-		if ($(target)[0].tagName.toLowerCase() === 'button') {
-			$(target).attr('disabled','disabled');
-		}
-	},
+        if ($(target)[0].tagName.toLowerCase() === 'button') {
+            $(target).attr('disabled','disabled');
+        }
+    },
 
-	enableButton: function(target) {
-		$(target).removeClass('disabled').removeClass('processing');
+    enableButton: function(target) {
+        $(target).removeClass('disabled').removeClass('processing');
 
-		if ($(target)[0].tagName.toLowerCase() === 'button') {
-			$(target).removeAttr('disabled');
-		}
-	}
+        if ($(target)[0].tagName.toLowerCase() === 'button') {
+            $(target).removeAttr('disabled');
+        }
+    }
 };
 
 /**
@@ -284,266 +286,271 @@ var UI = {
 
 var ChargebackCall = {
 
-	target: $("#chargebackCount"),
+    target: $("#chargebackCount"),
 
-	chargebackCount: 0,
+    chargebackCount: 0,
 
-	chargebackCookie: 'bam-chargebackCount',
+    chargebackCookie: 'bam-chargebackCount',
 
-	refresh: null,
+    refresh: null,
 
-	initialize: function(refresh) {
-		var cookie = Cookie.read(ChargebackCall.chargebackCookie),
-			region = '',
-			callFlag = false,
-			i,
-			length;
+    initialize: function(refresh) {
+        var cookie = Cookie.read(ChargebackCall.chargebackCookie),
+        region = '',
+        callFlag = false,
+        i,
+        length;
 
-		if (refresh) {
-			this.refresh = refresh;
-		}
+        if (refresh) {
+            this.refresh = refresh;
+        }
 
-		if (refresh || !cookie ){
-			if (typeof chargebackRegionNumbers !== 'undefined') {
-				chargebackRegionNumbers = $.unique(chargebackRegionNumbers);
-				for (var i = 0, length = chargebackRegionNumbers.length; i < length; i++) {
-					switch (chargebackRegionNumbers[i]) {
-						case 2:
-							region = "EU";
-								callFlag = true;
-							break;
-					}
+        if (refresh || !cookie ){
+            if (typeof chargebackRegionNumbers !== 'undefined') {
+                chargebackRegionNumbers = $.unique(chargebackRegionNumbers);
+                for (var i = 0, length = chargebackRegionNumbers.length; i < length; i++) {
+                    switch (chargebackRegionNumbers[i]) {
+                        case 2:
+                            region = "EU";
+                            callFlag = true;
+                            break;
+                    }
 
-					if (region == "NA") {
-						region = "US";
-					}
+                    if (region == "NA") {
+                        region = "US";
+                    }
 
-					if (callFlag && region !== '') {
-						ChargebackCall.getChargeback(chargebackRegionNumbers[i], region);
-						callFlag = false;
-					}
-			}
-				}
-		} else {
-			ChargebackCall.chargebackCount = cookie;
-			ChargebackCall.showChargeback(false);
-		}
-	},
+                    if (callFlag && region !== '') {
+                        ChargebackCall.getChargeback(chargebackRegionNumbers[i], region);
+                        callFlag = false;
+                    }
+                }
+            }
+        } else {
+            ChargebackCall.chargebackCount = cookie;
+            ChargebackCall.showChargeback(false);
+        }
+    },
 
-	getChargeback: function(regionNumber, region) {
-		$.ajax({
-			timeout: 60000,
-			url: Core.baseUrl + '/data/wow-licenses-details.html?region=' + region + '&_=' + new Date().getTime(),
-			success: function(msg) {
-				ChargebackCall.chargebackCount = 0;
-				for (var i=0; i< msg.length; i++) {
-					if (msg[i] !== '' && msg[i].status !== 'ERROR') {
-						ChargebackCall.chargebackCount = parseInt(ChargebackCall.chargebackCount, 10) + parseInt(msg[i].chargebackCount, 10);
-					}
-				}
-				ChargebackCall.showChargeback(true);
-			}
-		});
-	},
+    getChargeback: function(regionNumber, region) {
+        $.ajax({
+            timeout: 60000,
+            url: Core.baseUrl + '/data/wow-licenses-details.html?region=' + region + '&_=' + new Date().getTime(),
+            success: function(msg) {
+                ChargebackCall.chargebackCount = 0;
+                for (var i=0; i< msg.length; i++) {
+                    if (msg[i] !== '' && msg[i].status !== 'ERROR') {
+                        ChargebackCall.chargebackCount = parseInt(ChargebackCall.chargebackCount, 10) + parseInt(msg[i].chargebackCount, 10);
+                    }
+                }
+                ChargebackCall.showChargeback(true);
+            }
+        });
+    },
 
-	showChargeback: function(hasCookie) {
-		if (ChargebackCall.chargebackCount > 0 ) {
-			this.target.text(ChargebackCall.chargebackCount).addClass('display-bug');
-		}
-		ChargebackCall.setCookie(ChargebackCall.chargebackCount);
-	},
+    showChargeback: function(hasCookie) {
+        if (ChargebackCall.chargebackCount > 0 ) {
+            this.target.text(ChargebackCall.chargebackCount).addClass('display-bug');
+        }
+        ChargebackCall.setCookie(ChargebackCall.chargebackCount);
+    },
 
-	setCookie: function(chargebackCount) {
-		Cookie.create(ChargebackCall.chargebackCookie,chargebackCount,{ expires: 1 });
-	}
+    setCookie: function(chargebackCount) {
+        Cookie.create(ChargebackCall.chargebackCookie,chargebackCount,{
+            expires: 1
+        });
+    }
 }
 
 /**
  * Open up the account menu dropdowns.
  */
 function openAccountDropdown(node, id) {
-	var target = $('#'+ id +'-menu');
+    var target = $('#'+ id +'-menu');
 
-	if (target.is(':visible')) {
-		target.hide();
-		return;
-	} else {
-		$('.flyout-menu').hide();
-	}
+    if (target.is(':visible')) {
+        target.hide();
+        return;
+    } else {
+        $('.flyout-menu').hide();
+    }
 
-	//target.css(opts);
-	Toggle.open(node, '', '#'+ id +'-menu');
+    //target.css(opts);
+    Toggle.open(node, '', '#'+ id +'-menu');
 }
 
 function openFloatingAccountDropdown(node, id, xAdjust, yAdjust) {
-	var target = $('#'+ id +'-menu');
-	var parentPosition = $(node).position();
+    var target = $('#'+ id +'-menu');
+    var parentPosition = $(node).position();
 
-	if (target.is(':visible')) {
-		target.hide();
-		return;
-	} else {
-		target.css({ 'top': (parseInt(parentPosition.top) + yAdjust) + 'px', 'left': (parseInt(parentPosition.left) + xAdjust) + 'px' });
-		$('.flyout-menu').hide();
-	}
+    if (target.is(':visible')) {
+        target.hide();
+        return;
+    } else {
+        target.css({
+            'top': (parseInt(parentPosition.top) + yAdjust) + 'px', 
+            'left': (parseInt(parentPosition.left) + xAdjust) + 'px'
+        });
+        $('.flyout-menu').hide();
+    }
 
-	Toggle.open(node, '', '#'+ id +'-menu');
+    Toggle.open(node, '', '#'+ id +'-menu');
 }
 
 function openEbankOptions(node) {
-	var target = $('#balance-options');
-	if (target.is(':visible')) {
-		target.hide();
-		return;
-	} else {
-		$('#balance-options').hide();
-	}
+    var target = $('#balance-options');
+    if (target.is(':visible')) {
+        target.hide();
+        return;
+    } else {
+        $('#balance-options').hide();
+    }
 
-	Toggle.open(node, '', '#balance-options');
+    Toggle.open(node, '', '#balance-options');
 }
 
 function ComboBox(inputText, inputSelect, toggleLink) {
-	var self = this,
-		inputText = $(inputText),
-		inputSelect = $(inputSelect),
-		inputOptions = inputSelect.find('option'),
-		toggleLink = $(toggleLink),
-		data = [],
-		filteredData = [],
-		timer = null;
+    var self = this,
+    inputText = $(inputText),
+    inputSelect = $(inputSelect),
+    inputOptions = inputSelect.find('option'),
+    toggleLink = $(toggleLink),
+    data = [],
+    filteredData = [],
+    timer = null;
 
-	self.initialize = function() {
-		if (!inputSelect.length || !inputText.length)
-			return false;
+    self.initialize = function() {
+        if (!inputSelect.length || !inputText.length)
+            return false;
 
-		var i = 0,
-			length = inputOptions.length;
+        var i = 0,
+        length = inputOptions.length;
 
-		for (i; i < length; i++) {
-			var thisOption = $(inputOptions[i]);
-			data.push([thisOption.val(), thisOption.text(), _normalize(thisOption.text())])
-		}
+        for (i; i < length; i++) {
+            var thisOption = $(inputOptions[i]);
+            data.push([thisOption.val(), thisOption.text(), _normalize(thisOption.text())])
+        }
 
-		toggleLink.bind({
-			'click': function() {
-				self.filterOptions('');
-				self.showSelect();
-				return false;
-			}
-		});
+        toggleLink.bind({
+            'click': function() {
+                self.filterOptions('');
+                self.showSelect();
+                return false;
+            }
+        });
 
-		inputSelect.bind({
-			'keyup': function(e) {
-				if (e.which === 13) {
-					inputSelect.trigger('click');
-					return false;
-				}
-			},
-			'click': function() {
-				self.selectOption();
-				return false;
-			}
-		});
+        inputSelect.bind({
+            'keyup': function(e) {
+                if (e.which === 13) {
+                    inputSelect.trigger('click');
+                    return false;
+                }
+            },
+            'click': function() {
+                self.selectOption();
+                return false;
+            }
+        });
 
-		inputText.attr('autocomplete', 'off');
+        inputText.attr('autocomplete', 'off');
 
-		inputText.bind({
-			'keyup': function(e) {
-				clearTimeout(timer);
-				timer = null;
-				if (e.which === 40) {
-					inputSelect.selectedIndex = 0;
-					inputSelect.find('option')[0].selected = true;
-					inputSelect.focus();
-				} else {
-					timer = setTimeout(function() {
-						self.filterOptions(e.target.value);
-					}, 250);
-				}
-			},
-			'focus': function(e) {
-				e.target.select();
-			}
-		});
+        inputText.bind({
+            'keyup': function(e) {
+                clearTimeout(timer);
+                timer = null;
+                if (e.which === 40) {
+                    inputSelect.selectedIndex = 0;
+                    inputSelect.find('option')[0].selected = true;
+                    inputSelect.focus();
+                } else {
+                    timer = setTimeout(function() {
+                        self.filterOptions(e.target.value);
+                    }, 250);
+                }
+            },
+            'focus': function(e) {
+                e.target.select();
+            }
+        });
 
-	};
+    };
 
-	self.hideSelect = function() {
-		inputSelect.hide();
-		toggleLink.show();
-	};
+    self.hideSelect = function() {
+        inputSelect.hide();
+        toggleLink.show();
+    };
 
-	self.showSelect = function() {
-		inputSelect.show();
-		toggleLink.hide();
-	};
+    self.showSelect = function() {
+        inputSelect.show();
+        toggleLink.hide();
+    };
 
-	self.filterOptions = function(text) {
-		var i = 0,
-			length = inputOptions.length,
-			input = '',
-			test = '';
+    self.filterOptions = function(text) {
+        var i = 0,
+        length = inputOptions.length,
+        input = '',
+        test = '';
 
-		filteredData = [];
+        filteredData = [];
 
-		for (i; i < length; i++) {
-			test = data[i][2];
-			input = _normalize(text);
-			if (test.lastIndexOf(input) >= 0)
-				filteredData.push(data[i]);
-		}
+        for (i; i < length; i++) {
+            test = data[i][2];
+            input = _normalize(text);
+            if (test.lastIndexOf(input) >= 0)
+                filteredData.push(data[i]);
+        }
 
-		_appendOptions();
-	};
+        _appendOptions();
+    };
 
-	self.selectOption = function() {
-		inputSelect.hide();
-		toggleLink.show();
-		inputText.val($('#' + inputSelect.attr('id') + ' option:selected').text());
-	};
+    self.selectOption = function() {
+        inputSelect.hide();
+        toggleLink.show();
+        inputText.val($('#' + inputSelect.attr('id') + ' option:selected').text());
+    };
 
-	function _appendOptions() {
-		var i = 0,
-			length = filteredData.length,
-			string = '';
+    function _appendOptions() {
+        var i = 0,
+        length = filteredData.length,
+        string = '';
 
-		if (length === 1) {
-			string = '<option value="' + filteredData[0][0] + '" selected="selected">' + filteredData[0][1] + '</option>';
-			inputSelect.empty();
-			inputSelect.html(string);
-			self.selectOption();
-			return;
-		} else if (length > 0) {
-			for (i; i < length; i++) {
-				string = string + '<option value="' + filteredData[i][0] + '">' + filteredData[i][1] + '</option>';
-			}
-			self.showSelect();
-		} else {
-			length = data.length;
-			for (i; i < length; i++) {
-				string = string + '<option value="' + data[i][0] + '">' + data[i][1] + '</option>';
-			}
-			self.hideSelect();
-		}
+        if (length === 1) {
+            string = '<option value="' + filteredData[0][0] + '" selected="selected">' + filteredData[0][1] + '</option>';
+            inputSelect.empty();
+            inputSelect.html(string);
+            self.selectOption();
+            return;
+        } else if (length > 0) {
+            for (i; i < length; i++) {
+                string = string + '<option value="' + filteredData[i][0] + '">' + filteredData[i][1] + '</option>';
+            }
+            self.showSelect();
+        } else {
+            length = data.length;
+            for (i; i < length; i++) {
+                string = string + '<option value="' + data[i][0] + '">' + data[i][1] + '</option>';
+            }
+            self.hideSelect();
+        }
 
-		inputSelect.empty();
-		inputSelect.html(string);
-		//Always keep inputSelect width the same with inputText to fix a width bug in IE7
-		if (Core.getBrowser() == "ie7") {
-			inputSelect.width(inputText.outerWidth());
-		}
-	}
+        inputSelect.empty();
+        inputSelect.html(string);
+        //Always keep inputSelect width the same with inputText to fix a width bug in IE7
+        if (Core.getBrowser() == "ie7") {
+            inputSelect.width(inputText.outerWidth());
+        }
+    }
 
-	function _normalize(text) {
-		text = text.toLowerCase();
-		text = text.replace('é', 'e');
-		text = text.replace('ü', 'u');
-		text = text.replace(' - ', ' – ');
-		text = text.replace(' – ', ' ');
-		return text;
-	}
+    function _normalize(text) {
+        text = text.toLowerCase();
+        text = text.replace('é', 'e');
+        text = text.replace('ü', 'u');
+        text = text.replace(' - ', ' – ');
+        text = text.replace(' – ', ' ');
+        return text;
+    }
 
-	this.initialize();
+    this.initialize();
 }
 
 /**
@@ -558,122 +565,122 @@ function ComboBox(inputText, inputSelect, toggleLink) {
  */
 var DateTime = Class.extend({
 
-	/**
+    /**
 	 * jQuery objects for specific elements.
 	 */
-	times: null,
+    times: null,
 
-	/**
+    /**
 	 * Localization settings.
 	 */
-	format: '',
-	locale: Core.locale,
+    format: '',
+    locale: Core.locale,
 
-	/**
+    /**
 	 * Initialize the class and apply the config.
 	 */
-	init: function(full) {
+    init: function(full) {
 
-		full = typeof full === 'undefined';
+        full = typeof full === 'undefined';
 
-		this.times = $('time');
+        this.times = $('time');
 
-		switch (this.locale) {
-			default:
-			case 'cs-cz':
-			case 'de-de':
-			case 'pl-pl':
-				this.format = 'dd.MM.yyyy';
-				if (full) {
-					this.format = this.format + ' HH:mm';
-				}
-				break;
-			case 'en-us':
-				this.format = 'MM/dd/yyyy';
-				if (full) {
-					this.format = this.format + ' hh:mm a';
-				}
-				break;
-			case 'en-gb':
-			case 'es-es':
-			case 'es-mx':
-			case 'fr-fr':
-			case 'pt-br':
-			case 'it-it':
-			case 'ru-ru':
-				this.format = 'dd/MM/yyyy';
-				if (full) {
-					this.format = this.format + ' HH:mm';
-				}
-				break;
-			case 'en-sg':
-				this.format = 'dd/MM/yyyy';
-				if (full) {
-					this.format = this.format + ' hh:mm a';
-				}
-				break;
-			case 'ja-ja':
-				this.format = 'yyyy/MM/dd';
-				if (full) {
-					this.format = this.format + ' HH:mm';
-				}
-				break;
-			case 'ko-kr':
-				this.format = 'yyyy.MM.dd';
-				if (full) {
-					this.format = this.format + ' HH시mm분';
-				}
-				break;
-			case 'zh-cn':
-				this.format = 'yyyy年MM月dd日';
-				if (full) {
-					this.format = this.format + ' HH:mm';
-				}
-				break;
-			case 'zh-tw':
-				this.format = 'yyyy-MM-dd';
-				if (full) {
-					this.format = this.format + ' HH:mm';
-				}
-				break;
-		}
+        switch (this.locale) {
+            default:
+            case 'cs-cz':
+            case 'de-de':
+            case 'pl-pl':
+                this.format = 'dd.MM.yyyy';
+                if (full) {
+                    this.format = this.format + ' HH:mm';
+                }
+                break;
+            case 'en-us':
+                this.format = 'MM/dd/yyyy';
+                if (full) {
+                    this.format = this.format + ' hh:mm a';
+                }
+                break;
+            case 'en-gb':
+            case 'es-es':
+            case 'es-mx':
+            case 'fr-fr':
+            case 'pt-br':
+            case 'it-it':
+            case 'ru-ru':
+                this.format = 'dd/MM/yyyy';
+                if (full) {
+                    this.format = this.format + ' HH:mm';
+                }
+                break;
+            case 'en-sg':
+                this.format = 'dd/MM/yyyy';
+                if (full) {
+                    this.format = this.format + ' hh:mm a';
+                }
+                break;
+            case 'ja-ja':
+                this.format = 'yyyy/MM/dd';
+                if (full) {
+                    this.format = this.format + ' HH:mm';
+                }
+                break;
+            case 'ko-kr':
+                this.format = 'yyyy.MM.dd';
+                if (full) {
+                    this.format = this.format + ' HH시mm분';
+                }
+                break;
+            case 'zh-cn':
+                this.format = 'yyyy年MM月dd日';
+                if (full) {
+                    this.format = this.format + ' HH:mm';
+                }
+                break;
+            case 'zh-tw':
+                this.format = 'yyyy-MM-dd';
+                if (full) {
+                    this.format = this.format + ' HH:mm';
+                }
+                break;
+        }
 
-		if (this.times.length) {
-			this.localize();
-		}
+        if (this.times.length) {
+            this.localize();
+        }
 
-	},
+    },
 
-	localize: function() {
+    localize: function() {
 
-		var times = this.times,
-			format = this.format,
-			locale = this.locale,
-			datetime = null;
+        var times = this.times,
+        format = this.format,
+        locale = this.locale,
+        datetime = null;
 
-		for (var i = 0, len = times.length; i < len; i++) {
-			time = $(times[i]);
-			datetime = time.attr('datetime');
-			datetime = Core.formatDatetime(format, datetime);
-			if (!datetime) {
-				return;
-			}
-			datetime = datetime.replace('/0', '/');
-			if (datetime.substr(0, 1) === '0') {
-				datetime = datetime.substr(1);
-			}
-			if (locale === 'en-us' || locale === 'en-sg') {
-				datetime = datetime.replace(' 0', ' ');
-			}
+        for (var i = 0, len = times.length; i < len; i++) {
+            time = $(times[i]);
+            datetime = time.attr('datetime');
+            datetime = Core.formatDatetime(format, datetime);
+            if (!datetime) {
+                return;
+            }
+            datetime = datetime.replace('/0', '/');
+            if (datetime.substr(0, 1) === '0') {
+                datetime = datetime.substr(1);
+            }
+            if (locale === 'en-us' || locale === 'en-sg') {
+                datetime = datetime.replace(' 0', ' ');
+            }
 
-			if ($.browser.msie) {
-				time.parent().html(datetime);
-			} else {
-				time.html(datetime);
-			}
-		}
+            if ($.browser.msie) {
+                time.parent().html(datetime);
+            } else {
+                time.html(datetime);
+            }
+        }
 
-	}
+    }
 
 });
 
@@ -689,10 +696,10 @@ var DateTime = Class.extend({
 var accountBalance = {
 
     accountBalanceCurrency : null,
-	accountBalanceCenter: $("#accountBalanceCenter"),
-	accountBalanceMenu: $("#accountBalance-menu"),
-	changeCurrencyMenu: $("#changeCurrency-menu"),
-	accountBalancePrimaryBalance: $("#primary-balance"),
+    accountBalanceCenter: $("#accountBalanceCenter"),
+    accountBalanceMenu: $("#accountBalance-menu"),
+    changeCurrencyMenu: $("#changeCurrency-menu"),
+    accountBalancePrimaryBalance: $("#primary-balance"),
     refreshBalanceElement: $("#refreshBalance"),
     refreshingBalanceElement: $("#refreshingBalance"),
     /**
@@ -704,38 +711,38 @@ var accountBalance = {
      *        'point': '.'
      *     }
      */
-	currencyMap: {},
+    currencyMap: {},
 
-	initialize: function() {
-		if (accountBalance.accountBalanceCurrency){
-			accountBalance.setPrimary(accountBalance.accountBalanceCurrency);
-		}
+    initialize: function() {
+        if (accountBalance.accountBalanceCurrency){
+            accountBalance.setPrimary(accountBalance.accountBalanceCurrency);
+        }
 
-		accountBalance.bindCurrencies();
-	},
+        accountBalance.bindCurrencies();
+    },
 
     bindCurrencies: function() {
-		this.accountBalanceMenu.find(".switch-currency").each(function(){
-			$(this).bind({
-				'click': function() {
-					var flagSelected = $(this).hasClass("selected");
-					if(!flagSelected){
+        this.accountBalanceMenu.find(".switch-currency").each(function(){
+            $(this).bind({
+                'click': function() {
+                    var flagSelected = $(this).hasClass("selected");
+                    if(!flagSelected){
                         accountBalance.accountBalanceCurrency = $(this).attr("id");
-						accountBalance.setAccountBalanceCurrency();
-					}
-				}
-			});
-		});
+                        accountBalance.setAccountBalanceCurrency();
+                    }
+                }
+            });
+        });
 
-		this.changeCurrencyMenu.find(".switch-currency").each(function(){
-			$(this).bind({
-				'click': function() {
+        this.changeCurrencyMenu.find(".switch-currency").each(function(){
+            $(this).bind({
+                'click': function() {
                     accountBalance.accountBalanceCurrency = $(this).attr("id");
-					accountBalance.setAccountBalanceCurrency();
-				}
-			});
-		});
-	},
+                    accountBalance.setAccountBalanceCurrency();
+                }
+            });
+        });
+    },
 
     selectCurrency: function(currency) {
         var flagSelected = $("#" + currency).hasClass("selected");
@@ -753,10 +760,10 @@ var accountBalance = {
         this.refreshBalanceElement.hide();
         this.refreshingBalanceElement.show();
 
-		$.ajax({
-			timeout: 60000,
+        $.ajax({
+            timeout: 60000,
             url: Core.baseUrl + '/data/refresh-balance.html',
-			success: function(msg) {
+            success: function(msg) {
                 if (msg !== '') {
                     var currencies = msg;
                     var selectedCurrency = accountBalance.accountBalanceCurrency;
@@ -771,74 +778,74 @@ var accountBalance = {
                             if (selectedCurrency == currencies[c]['currency']) {
                                 className += " selected";
                                 $("#primary-balance").text(v);
-							}
+                            }
                             var newEvent = " onclick='accountBalance.selectCurrency(&quot;" + currencies[c]['currency'] + "&quot;);' ";
                             newElements += "<li id='" + currencies[c]['currency'] + "' class='" + className + "'" + newEvent + "><span>" + v + "</span></li>";
-						}
-				}
+                        }
+                    }
                     $("#accountBalance-menu ul").children(":first").before(newElements);
                 }
-			},
-			error: function() {
-				//accountBalance.setError();
-			}
-		});
+            },
+            error: function() {
+            //accountBalance.setError();
+            }
+        });
 
         accountBalance.bindCurrencies();
         
         setTimeout('accountBalance.toggleRefresh()', 1000);
 
-	},
+    },
 
     toggleRefresh: function() {
         this.refreshBalanceElement.show();
         this.refreshingBalanceElement.hide();
     },
 
-	setPrimary: function(value) {
-		if (accountBalance.changeCurrencyMenuFlag) {
-			window.location.reload();
-			return false;
-		}
+    setPrimary: function(value) {
+        if (accountBalance.changeCurrencyMenuFlag) {
+            window.location.reload();
+            return false;
+        }
 
         accountBalance.accountBalanceCurrency = value;
 
-		this.accountBalanceMenu.find(".switch-currency").removeClass("selected");
+        this.accountBalanceMenu.find(".switch-currency").removeClass("selected");
 
-		var primaryEl = this.accountBalanceCenter.find("#"+value).addClass("selected");
+        var primaryEl = this.accountBalanceCenter.find("#"+value).addClass("selected");
 
-		var primaryCurrency = primaryEl.find("span").html();
-		if (primaryCurrency !== null) {
-			this.accountBalancePrimaryBalance.html(primaryCurrency);
-		}else{
-			price = 0.00;
-			this.accountBalancePrimaryBalance.html(accountBalance.getBalanceFormatting(price));
-		}
-	},
+        var primaryCurrency = primaryEl.find("span").html();
+        if (primaryCurrency !== null) {
+            this.accountBalancePrimaryBalance.html(primaryCurrency);
+        }else{
+            price = 0.00;
+            this.accountBalancePrimaryBalance.html(accountBalance.getBalanceFormatting(price));
+        }
+    },
 
-	setAccountBalanceCurrency: function(selected) {
-			if (selected) {
+    setAccountBalanceCurrency: function(selected) {
+        if (selected) {
             accountBalance.accountBalanceCurrency = selected;
-			}
-			$.ajax({
-				timeout: 60000,
+        }
+        $.ajax({
+            timeout: 60000,
             url: Core.baseUrl + '/management/set-account-cookie.html?prefix=CUR&value=' + accountBalance.accountBalanceCurrency + '&_=' + new Date().getTime(),
-				success: function(msg) {
-					if (msg !== '' && msg.successful !== '') {
-						if (msg.successful === true && msg.value !== undefined) {
-							accountBalance.setPrimary(msg.value);
+            success: function(msg) {
+                if (msg !== '' && msg.successful !== '') {
+                    if (msg.successful === true && msg.value !== undefined) {
+                        accountBalance.setPrimary(msg.value);
 
-							if (selected) {
-								location.href = "transaction-history.html?currency=" + msg.value;
-							}
-						}
-					}
-				},
-				error: function() {
-					//accountBalance.setError();
-				}
-			});
-	},
+                        if (selected) {
+                            location.href = "transaction-history.html?currency=" + msg.value;
+                        }
+                    }
+                }
+            },
+            error: function() {
+            //accountBalance.setError();
+            }
+        });
+    },
 
     getBalanceFormatting: function(number, currency) {
         currency = currency || accountBalance.accountBalanceCurrency;
@@ -866,26 +873,26 @@ var accountBalance = {
 
         currency = currency || accountBalance.accountBalanceCurrency;
 
-	    if(currency == 'CPT' && number == 0){
-		    return number;
-	    }
+        if(currency == 'CPT' && number == 0){
+            return number;
+        }
 
         var i,
-            j,
-            groupSize,
-            delimiter,
-            point,
-            reg = /(^[+-]?\d+)(\d{3})/;
+        j,
+        groupSize,
+        delimiter,
+        point,
+        reg = /(^[+-]?\d+)(\d{3})/;
 
         if (accountBalance.currencyMap[currency]) {
             groupSize = accountBalance.currencyMap[currency].groupSize || 3,
             delimiter = accountBalance.currencyMap[currency].delimiter || ",",
             point = accountBalance.currencyMap[currency].point || ".";
-		}else{
+        }else{
             groupSize = 3,
             delimiter = ",",
             point = ".";
-		}
+        }
 
         number += "";
         number = number.split(".");
@@ -905,7 +912,7 @@ var accountBalance = {
         }
 
         return (number[0] + point + number[1]);
-	},
+    },
 
     _getCurrencyFormat: function (number, currency) {
         currency = currency || accountBalance.accountBalanceCurrency;
@@ -917,9 +924,9 @@ var accountBalance = {
         return number;
     },
 
-	setError: function() {
-		return false;
-	}
+    setError: function() {
+        return false;
+    }
 }
 
 /**
@@ -932,29 +939,34 @@ var accountBalance = {
  * Region.getRegion(1) retrun "us"
  */
 var Region = {
-	data: {
-		'us' : 1, 'eu' : 2, 'kr' : 3, 'tw' : 4, 'cn' : 5, 'sea' : 6
-	},
+    data: {
+        'us' : 1, 
+        'eu' : 2, 
+        'kr' : 3, 
+        'tw' : 4, 
+        'cn' : 5, 
+        'sea' : 6
+    },
 
-	getRegion: function(id) {
-		return Region.getByString(id) || Region.getByNumber(id);
-	},
+    getRegion: function(id) {
+        return Region.getByString(id) || Region.getByNumber(id);
+    },
 
-	getByString: function(id){
-		if (typeof (id) === 'string') {
-			return Region.data[id.toLowerCase()];
-		}
-		return false;
-	},
+    getByString: function(id){
+        if (typeof (id) === 'string') {
+            return Region.data[id.toLowerCase()];
+        }
+        return false;
+    },
 
-	getByNumber: function(id){
-		for( var key in Region.data ) {
-			if (Region.data.hasOwnProperty(key) && Region.data[key] === id) {
-				return key;
-			}
-		}
-		return false;
-	}
+    getByNumber: function(id){
+        for( var key in Region.data ) {
+            if (Region.data.hasOwnProperty(key) && Region.data[key] === id) {
+                return key;
+            }
+        }
+        return false;
+    }
 }
 
 /**
@@ -977,8 +989,8 @@ var Region = {
 var InputValidator = {
     initialize:function(objInput){
         var i,
-            inputLength = objInput.input.length,
-            result;
+        inputLength = objInput.input.length,
+        result;
         for (i = 0; i < inputLength; i++) {
             $("#" + objInput.input[i].id).bind('keyup change', function(){
                 result = InputValidator.validateMaxLength();
@@ -991,10 +1003,10 @@ var InputValidator = {
 
     validateMaxLength:function(){
         var i,
-            inputLength = objInput.input.length,
-            maxLength,
-            length,
-            result;
+        inputLength = objInput.input.length,
+        maxLength,
+        length,
+        result;
         for (i = 0; i < inputLength; i++) {
             maxLength = $("#" + objInput.input[i].id).attr("maxlength");
             length = $("#" + objInput.input[i].id).val().length;
@@ -1025,38 +1037,38 @@ var InputValidator = {
  * @param errorMessages	Array of errors to display
  */
 function showErrors(alertTitle, errorMessages) {
-	var errorCount = errorMessages.length,
-		container = $('.templates > .error').clone(),
-		header = container.find('.error-title'),
-		error = container.find('.error-message'),
-		errors = container.find('.error-messages');
+    var errorCount = errorMessages.length,
+    container = $('.templates > .error').clone(),
+    header = container.find('.error-title'),
+    error = container.find('.error-message'),
+    errors = container.find('.error-messages');
 
-	if (container.length) {
-		header.html(alertTitle);
-		if (errorCount > 1) {
-			error.remove();
-			var item;
-			for (var i = 0; i < errorCount; i++) {
-				item = document.createElement('li');
-				item.appendChild(document.createTextNode(errorMessages[i]));
-				errors.append(item);
-			}
-		} else {
-			errors.remove();
-			error.append(errorMessages[0]);
-		}
+    if (container.length) {
+        header.html(alertTitle);
+        if (errorCount > 1) {
+            error.remove();
+            var item;
+            for (var i = 0; i < errorCount; i++) {
+                item = document.createElement('li');
+                item.appendChild(document.createTextNode(errorMessages[i]));
+                errors.append(item);
+            }
+        } else {
+            errors.remove();
+            error.append(errorMessages[0]);
+        }
 
-		$('#content > .alert').remove();
-		$('#content').prepend(container);
-		window.location.href = window.location.pathname + window.location.search + '#form-errors';
-	}
+        $('#content > .alert').remove();
+        $('#content').prepend(container);
+        window.location.href = window.location.pathname + window.location.search + '#form-errors';
+    }
 }
 
 /*
  * Initiate GA pageview track
  */
 function trackPageviewAnalytics(customUrl) {
-	if (typeof _gaq !== 'undefined') {
-		_gaq.push(['_trackPageview', window.location.pathname + '[' + customUrl + '-TRACKING]' + window.location.search + window.location.hash]);
-	}
+    if (typeof _gaq !== 'undefined') {
+        _gaq.push(['_trackPageview', window.location.pathname + '[' + customUrl + '-TRACKING]' + window.location.search + window.location.hash]);
+    }
 }

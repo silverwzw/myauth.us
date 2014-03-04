@@ -16,7 +16,7 @@ $navurladd = SITEHOST . "faq.php";
                     <div id="article-container">
                         <div id="article">
                             <div class="article-games">
-                                <a href="/"><img src="/resources/img/auth.png" alt=""></a>
+                                <a href="/"><img src="resources/img/auth.png" alt=""></a>
                             </div>
                             <h2 id="article-title"> FAQ 常见问题解答 </h2>
                             <div id="article-content">
@@ -98,7 +98,6 @@ $navurladd = SITEHOST . "faq.php";
                                     您需要输入安全令名称，安全令序列号及还原码，请注意，安全令序列号仅需要输入横线间的数字即可。<br>
                                     您可以选择安全令图片，该图片仅在<a href="<?php echo SITEHOST ?>myauthall.php">我的安全令</a>页面显示，且无法更改<br>
                                     输入验证码，确认还原，如点击设置为默认安全令，该枚新还原的安全令将作为您的默认安全令显示在首页中。<br>
-                                    <span style="color:red;">如果您输入的还原码错误，下一页面将不显示任何信息，这是一个开发时的问题，未来可能会有所改进</span>
                                 </p>
                                 <p class="alignleft" style="font-size: 16px;">5、我该如何找到我的40位密钥<br></p>
                                 <p>如果您使用战网手机安全令IOS版本，抱歉，我没有IOS的各种手机(<s>程序猿都穷</s>)，不知道去哪提取<br>
@@ -118,7 +117,7 @@ $navurladd = SITEHOST . "faq.php";
                                 <p>如果您已经<a href="<?php echo SITEHOST; ?>addauth.php">添加安全令</a>，请访问<a href="<?php echo SITEHOST; ?>myauthall.php">我的安全令</a>页面<br>
                                     在该页面中您可以管理您已有的安全令，如果您的安全令总数小于&nbsp;<?php echo MOST_AUTH; ?>枚，右上角还会显示添加按钮<br>
                                     页面会显示您的安全令编号、名称、序列号、还原码、最后一次同步时间，并显示校正时间、设置默认、确认删除按钮。您可以点击每一行，访问该行对应安全令的动态密码页面。<br>
-                                    安全令名称前若显示<img src="<?php echo SITEHOST; ?>resources/img/moren.png" alt="">则表示该安全令为您设置的默认安全令。<br>
+                                    安全令名称前若显示<img src="resources/img/moren.png" alt="">则表示该安全令为您设置的默认安全令。<br>
                                     您可以双击文字更改安全令名称。<br>
                                     若您的安全令显示不正确，请点击校正时间按钮，系统将自动同步该枚安全令的时间。<br>
                                     <span style="color:red;">请注意，系统每24小时会自动重新校正该枚安全令的同步时间，在一般情况下无需点击校正时间按钮</span><br>
@@ -150,7 +149,7 @@ $navurladd = SITEHOST . "faq.php";
                                 <p>额，<s>程序猿都穷</s>，当然目前服务器的钱我还是撑得住的啦，如果这个网站使用人数超多了，服务器撑不住了，大概就要考虑换了………………
                                 </p>
                                 <p class="alignleft" style="font-size: 16px;">3、这么抄战网行么<br></p>
-                                <p>额，<s>CSS苦手</s>，战网方面如有要求，我们可以在一段时间内重新更改界面，战网安全令在线版开发团队不是盈利机构，改页面花时间，累啊<br>
+                                <p>额，<s>CSS苦手</s>，战网方面如有要求，我们可以在一段时间内重新更改界面，战网安全令在线版开发团队(竹井詩織里)不是盈利机构，改页面花时间，累啊<br>
                                 <s>其实本来想换点图标的，可是到最后觉得好累，就不换了</s>
                                 </p>
                                 <p class="alignleft" style="font-size: 16px;">4、免费吗<br></p>

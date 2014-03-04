@@ -16,7 +16,7 @@ $navurladd = SITEHOST . "about.php";
                     <div id="article-container">
                         <div id="article">
                             <div class="article-games">
-                                <a href="/"><img src="/resources/img/auth.png" alt=""></a>
+                                <a href="/"><img src="resources/img/auth.png" alt=""></a>
                             </div>
                             <h2 id="article-title"> 欢迎使用战网安全令在线版 </h2>
                             <div id="article-content">
@@ -26,7 +26,7 @@ $navurladd = SITEHOST . "about.php";
                                     本站属于业余开发，请不要与专业团队相提并论，开发人员比较呆蠢笨，容易犯错误，如发现BUG请<a href="mailto:webmaster@myauth.us">联系我们</a>
                                 </p>
                                 <p>
-                                    战网安全令在线版开发团队未非盈利机构，不会为本站服务向您强制收取任何费用，您所享受的一切服务都是免费的<br>
+                                    战网安全令在线版开发团队(竹井詩織里)未非盈利机构，不会为本站服务向您强制收取任何费用，您所享受的一切服务都是免费的<br>
                                     请认准本站唯一域名<a href="<?php echo SITEHOST ?>"><?php echo SITEHOST ?></a>，虽然我们不钓鱼，但是其他网站说不定哪天就来钓本站的鱼了
                                 </p>
                                 <p>

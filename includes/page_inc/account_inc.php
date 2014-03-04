@@ -1,5 +1,6 @@
 <?php
 defined("ZHANGXUAN") or die("no hacker.");
+
 function allatthecho($login, $userid) {
     global $dbconnect;
     if ($login == 0) {
@@ -7,11 +8,11 @@ function allatthecho($login, $userid) {
         return $returntxt;
     } else {
         $sql = "SELECT * FROM `authdata` WHERE `user_id`='$userid'";
-        $result = mysqli_query($dbconnect,$sql);
-        $imgurl[1] = "/resources/img/wow-32.png";
-        $imgurl[2] = "/resources/img/s2-32.png";
-        $imgurl[3] = "/resources/img/d3-32.png";
-        $imgurl[4]="/resources/img/pegasus-32.png";
+        $result = mysqli_query($dbconnect, $sql);
+        $imgurl[1] = "resources/img/wow-32.png";
+        $imgurl[2] = "resources/img/s2-32.png";
+        $imgurl[3] = "resources/img/d3-32.png";
+        $imgurl[4] = "resources/img/pegasus-32.png";
         $returntxt = "";
         while ($rowarr = mysqli_fetch_array($result)) {
             $returntxt = $returntxt . '
@@ -35,10 +36,10 @@ function allatthecho($login, $userid) {
 }
 ?>
 
-<link rel="stylesheet" href="../../resources/css/accountbody.css" type="text/css" />
-<script type="text/javascript" src="../../resources/js/common.js"></script> 
-<script type="text/javascript" src="../../resources/js/lobby.js"></script> 
-<script type="text/javascript" src="../../resources/js/account.js.php"></script> 
+<link rel="stylesheet" href="resources/css/accountbody.css" type="text/css" />
+<script type="text/javascript" src="resources/js/common.js"></script> 
+<script type="text/javascript" src="resources/js/lobby.js"></script> 
+<script type="text/javascript" src="resources/js/account.js"></script> 
 <div id="layout-middle">
     <div id="homewrapper"><div id="content">
             <div id="lobby"><div id="page-content" class="page-content">
@@ -49,6 +50,10 @@ function allatthecho($login, $userid) {
                             <p><?php echo strtoupper($rowtemp['user_name']); ?></p>
                             <h4 class="subcategory">邮箱</h4>
                             <p><?php echo $rowtemp['user_email']; ?></p>
+                            <h4 class="subcategory">上次登录时间</h4>
+                            <p><?php echo date('Y年m月d日 H:m:s',strtotime($rowtemp['user_lastlogin_time'])); ?></p>
+                            <h4 class="subcategory">上次登录IP地址</h4>
+                            <p><?php echo $rowtemp['user_lastlogin_ip']; ?></p>
                         </div>
                         <h3 class="section-title">账号状态</h3>
                         <div class="lobby-box security-box">
@@ -80,13 +85,13 @@ function allatthecho($login, $userid) {
                                 <?php
                                 echo allatthecho($logincheck, $user_id);
                                 $sql = "SELECT * FROM `authdata` WHERE `user_id`='$user_id'";
-                                $result = mysqli_query($dbconnect,$sql);
+                                $result = mysqli_query($dbconnect, $sql);
                                 if (mysqli_num_rows($result) < MOST_AUTH) {
                                     ?>
                                     <!--添加账号-->
                                     <li id="addWowTrial" class="trial no-subtitle border-4" >
                                         <span class="game-icon">
-                                            <span class="png-fix"><img width="32" height="32" src="/resources/img/bga.png" alt=""></span></span>
+                                            <span class="png-fix"><img width="32" height="32" src="resources/img/bga.png" alt=""></span></span>
                                         <span class="account-info">
                                             <span class="account-link">
                                                 <strong>
@@ -100,7 +105,7 @@ function allatthecho($login, $userid) {
                         <div id="games-tools">
                             <?php if (mysqli_num_rows($result) < MOST_AUTH) { ?>
                                 <a id="add-time" class="border-5" href="<?php echo SITEHOST ?>addauth.php" >添加安全令</a>
-                            <?php }; ?>
+<?php }; ?>
                             <div style="margin-top: 7px;">
                                 <p><a class="" href="<?php echo SITEHOST ?>changemailadd.php" onclick=""><span class="icon-16 icon-account-mail"></span><span class="icon-16-label">
                                             修改邮箱地址
@@ -111,11 +116,11 @@ function allatthecho($login, $userid) {
                                 <p><a class="" href="<?php echo SITEHOST ?>myauthall.php" onclick=""><span class="icon-16 icon-account-auth"></span><span class="icon-16-label">
                                             我的安全令
                                         </span></a></p>
-                                <?php if($auth_total_all>0){?>
-                                <p><a class="" href="<?php echo SITEHOST ?>myauthcsv.php" onclick=""><span class="icon-16 icon-account-download"></span><span class="icon-16-label">
-                                            下载我的安全令备份CSV
-                                        </span></a></p>
-                                <?php };?>
+<?php if ($auth_total_all > 0) { ?>
+                                    <p><a class="" href="<?php echo SITEHOST ?>myauthcsv.php" onclick=""><span class="icon-16 icon-account-download"></span><span class="icon-16-label">
+                                                下载我的安全令备份CSV
+                                            </span></a></p>
+<?php }; ?>
                                 <p><a class="" href="<?php echo SITEHOST ?>copyright.php" onclick=""><span class="icon-16 icon-account-faq"></span><span class="icon-16-label">
                                             FAQ
                                         </span></a></p>

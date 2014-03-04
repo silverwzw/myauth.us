@@ -1,12 +1,12 @@
 <?php
 defined("ZHANGXUAN") or die("no hacker.");
 ?>
-<link rel="stylesheet" href="../../resources/css/forgetpsd.css" type="text/css" />
-<script type="text/javascript" src="<?php echo SITEHOST ?>resources/js/forgetpwd_ajaxcheck.js.php"></script> 
-<script type="text/javascript" src="../../resources/js/class-inheritance.js"></script>
-<script type="text/javascript" src="../../resources/js/inputs.js"></script>
-<script type="text/javascript" src="../../resources/js/streamlined-creation.js"></script>
-<script type="text/javascript" src="../../resources/js/validation.js"></script>
+<link rel="stylesheet" href="resources/css/forgetpsd.css" type="text/css" />
+<script type="text/javascript" src="resources/js/forgetpwd_ajaxcheck.js"></script> 
+<script type="text/javascript" src="resources/js/class-inheritance.js"></script>
+<script type="text/javascript" src="resources/js/inputs.js"></script>
+<script type="text/javascript" src="resources/js/streamlined-creation.js"></script>
+<script type="text/javascript" src="resources/js/validation.js"></script>
 <div id="layout-middle">
     <div id="homewrapper">
         <div id="content">

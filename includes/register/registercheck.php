@@ -1,4 +1,5 @@
 <?php
+
 defined("ZHANGXUAN") or die("no hacker.");
 $questionid[81] = "您出生的城市是哪里?";
 $questionid[82] = "您手机的型号是什么?";
@@ -15,20 +16,21 @@ $registererrid = 0; //1注册码错误，2用户名重复，3邮件格式错误�
 if (isset($_POST["letters_code"]) && !empty($_POST["letters_code"]) && md5(strtolower($_POST["letters_code"])) == $_SESSION['letters_code']) {   //验证码正确才能继续搞啊
     if (isset($_POST["username"]) && !empty($_POST["username"]) && isset($_POST["password"]) && !empty($_POST["password"]) && isset($_POST["emailAddress"]) && !empty($_POST["emailAddress"]) && isset($_POST["question1"]) && !empty($_POST["question1"]) && isset($_POST["answer1"]) && !empty($_POST["answer1"])) {                  //要有数据啊
         if (checkzhongwenzimushuzixiahuaxian($_POST["username"]) && checkquestionvalue($_POST['question1']) && valid_email($_POST["emailAddress"])) {
-            $user = mysqli_real_escape_string($dbconnect,htmlspecialchars($_POST["username"], ENT_QUOTES));
-            $password = mysqli_real_escape_string($dbconnect,md5($_POST['password']));
-            $emailadd = mysqli_real_escape_string($dbconnect,htmlspecialchars($_POST['emailAddress']));
-            $question1 = mysqli_real_escape_string($dbconnect,htmlspecialchars($_POST['question1']));
-            $answer1 = mysqli_real_escape_string($dbconnect,htmlspecialchars($_POST['answer1']));
+            $user = mysqli_real_escape_string($dbconnect, htmlspecialchars($_POST["username"], ENT_QUOTES));
+            $password = mysqli_real_escape_string($dbconnect, md5($_POST['password']));
+            $emailadd = mysqli_real_escape_string($dbconnect, htmlspecialchars($_POST['emailAddress']));
+            $question1 = mysqli_real_escape_string($dbconnect, htmlspecialchars($_POST['question1']));
+            $answer1 = mysqli_real_escape_string($dbconnect, htmlspecialchars($_POST['answer1']));
             $user_email_checkid = randstr();
             $date = date('Y-m-d H:i:s');
             $emailfind = randstr();
             $mailresettoken = randstr();
             $cookievalue = randstr();
+            $userip=$_SERVER["REMOTE_ADDR"];
             if (checkpostusername($user)) {                                           //验证用户名不重复
                 if (valid_email($emailadd)) {                                         //验证邮箱地址合法
-                    $sql = "INSERT INTO `users`(`user_name`, `user_pass`, `user_email`, `user_email_checked`, `user_registered`, `user_question`, `user_answer`, `user_email_checkid`,`user_email_find_code`,`user_email_find_mode`,`user_psd_reset_token`,`user_psd_reset_token_used`) VALUES ('$user','$password','$emailadd',0,'$date',$question1,'$answer1','$user_email_checkid','$emailfind',0,'$mailresettoken','1')";
-                    $result = mysqli_query($dbconnect,$sql);
+                    $sql = "INSERT INTO `users`(`user_name`, `user_pass`, `user_email`, `user_email_checked`, `user_registered`, `user_question`, `user_answer`, `user_email_checkid`,`user_email_find_code`,`user_email_find_mode`,`user_psd_reset_token`,`user_psd_reset_token_used`,`user_lastlogin_ip`,`user_thistimelogin_ip`,`user_lastlogin_time`,`user_thislogin_time`) VALUES ('$user','$password','$emailadd',0,'$date',$question1,'$answer1','$user_email_checkid','$emailfind',0,'$mailresettoken','1','$userip','$userip','$date','$date')";
+                    $result = mysqli_query($dbconnect, $sql);
                     if ($result) {
                         $_SESSION['loginuser'] = $user;
                         setcookie("loginname", $user, time() + 30 * 24 * 60 * 60, "/");
@@ -37,13 +39,13 @@ if (isset($_POST["letters_code"]) && !empty($_POST["letters_code"]) && md5(strto
                         $registercheck = 1;
                     }
                     $sql = "SELECT `user_id` FROM `users` WHERE `user_name`='$user'";
-                    $result = mysqli_query($dbconnect,$sql);
+                    $result = mysqli_query($dbconnect, $sql);
                     $rowtemp = mysqli_fetch_array($result);
                     $user_id = $rowtemp['user_id'];
-                    
-                    $sql = "INSERT INTO `cookiedata`(`user_id`, `user_name`, `user_cookie`, `login_time`) VALUES ('$user_id','$user','$cookievalue','$date')";
-                    @mysqli_query($dbconnect,$sql);
-            
+
+                    $sql = "INSERT INTO `cookiedata`(`user_id`, `user_name`, `user_cookie`, `login_time`,`user_login_ip`) VALUES ('$user_id','$user','$cookievalue','$date','$userip')";
+                    @mysqli_query($dbconnect, $sql);
+
                     /*                     * *********发送邮件部分*********** *///发送邮件的某个函数自己后面再处理下吧，格式如下，../mailcheck.php?userid=num&checkcode=dsaswewasdwewqs,查库的确认格式即可
                     $mailtxtcheckurl = SITEHOST . "mailcheck.php?userid=$user_id&checkcode=$user_email_checkid";
                     $mailtxt = "本邮件为系统自动发送，您的战网在线安全令账号已经创建<br><br>" .
@@ -57,8 +59,8 @@ if (isset($_POST["letters_code"]) && !empty($_POST["letters_code"]) && md5(strto
                             "<a href='$mailtxtcheckurl' target='_blank'>$mailtxtcheckurl</a><br><br>" .
                             "如果这不是您操作的，请忽略本邮件，绝对不要点击以上链接。<br><br>" .
                             "本邮件为自动发送，请不要回复，因为没人会看的。<br><br>" .
-                            "竹井诗织里<br><br>".
-							date('Y-m-d');
+                            "竹井詩織里<br><br>" .
+                            date('Y-m-d');
                     try {
                         $mail = new PHPMailer(true); //创建新的邮件
 
@@ -76,7 +78,7 @@ if (isset($_POST["letters_code"]) && !empty($_POST["letters_code"]) && md5(strto
                         //$mail->IsSendmail();  // 如果报错请取消注释
 
                         $mail->From = SMTP_USERNAME;
-                        $mail->FromName = "=?utf-8?B?" . base64_encode("战网安全令在线版开发团队") . "?=";
+                        $mail->FromName = "=?utf-8?B?" . base64_encode("竹井詩織里(战网安全令在线版)") . "?=";
 
                         $to = $emailadd;
 
@@ -118,7 +120,7 @@ if (isset($_POST["letters_code"]) && !empty($_POST["letters_code"]) && md5(strto
 function checkpostusername($arruname) {
     global $dbconnect;
     $sql = "SELECT * FROM `users` WHERE `user_name`='$arruname'";
-    $result = mysqli_query($dbconnect,$sql);
+    $result = mysqli_query($dbconnect, $sql);
     if (mysqli_num_rows($result) == 0) {
         return true;
     } else {

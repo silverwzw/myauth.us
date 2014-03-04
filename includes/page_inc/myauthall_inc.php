@@ -10,10 +10,10 @@ function tableshowtext($logincheck, $user) {
     global $dbconnect;
     if ($logincheck == 1) {
         $returntxt = "";
-        $imgurl[1] = "/resources/img/wow-32.png";
-        $imgurl[2] = "/resources/img/s2-32.png";
-        $imgurl[3] = "/resources/img/d3-32.png";
-        $imgurl[4] = "/resources/img/pegasus-32.png";
+        $imgurl[1] = "resources/img/wow-32.png";
+        $imgurl[2] = "resources/img/s2-32.png";
+        $imgurl[3] = "resources/img/d3-32.png";
+        $imgurl[4] = "resources/img/pegasus-32.png";
         $sql = "SELECT * FROM `users` WHERE `user_name`='$user'";
         $result = mysqli_query($dbconnect, $sql);
         $rowtemp = mysqli_fetch_array($result);
@@ -67,11 +67,8 @@ if ($logincheck == 1) {
     }
 }
 ?>
-<link rel="stylesheet" href="../../resources/css/myauthall.css" type="text/css" />
-<script type="text/javascript" src="../../resources/js/auth_sync.js.php"></script>
-<script type="text/javascript" src="../../resources/js/auth_delete.js.php"></script>
-<script type="text/javascript" src="../../resources/js/auth_moren.js.php"></script>
-<script type="text/javascript" src="../../resources/js/autn_name.js.php"></script>
+<link rel="stylesheet" href="resources/css/myauthall.css" type="text/css" />
+<script type="text/javascript" src="resources/js/auth_union.js"></script>
 <div id="layout-middle">
     <div id="homewrapper">
         <div id="content">
@@ -124,7 +121,7 @@ if ($logincheck == 1) {
                                         删除
                                     </span></th></tr></thead>
                         <tbody>
-<?php echo tableshowtext($logincheck, $user); ?>     
+                            <?php echo tableshowtext($logincheck, $user); ?>     
                         </tbody></table>
                 </div>
             </div>

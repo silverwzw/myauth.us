@@ -16,7 +16,7 @@ $navurladd = SITEHOST . "welcome.php";
                     <div id="article-container">
                         <div id="article">
                             <div class="article-games">
-                                <a href="/"><img src="/resources/img/auth.png" alt=""></a>
+                                <a href="/"><img src="resources/img/auth.png" alt=""></a>
                             </div>
                             <h2 id="article-title"> 欢迎使用战网安全令在线版 </h2>
                             <div id="article-content">
@@ -24,11 +24,13 @@ $navurladd = SITEHOST . "welcome.php";
                                     欢迎访问战网安全令在线版。<br>在这里，你能通过在线方式生成、还原一枚安全令，这些安全令可以用于战网及其游戏的登入，<br>
                                     包括且不限于魔兽世界、星际争霸II、暗黑破坏神III、炉石传说、战网Battle.Net<br>
                                     您可以使用任何连入国际互联网的计算机访问我们，并获得您的动态密码，出门办事，再也不必担心手机没电/压根没带导致不能登入游戏的情况发生<br>
-                                    <?php if(SSLMODE==0){
-                                        echo '如果您想使用安全的版本，请访问<a href="'.SITEHOSTSAFEMODE.'" alt="SSL加密版战网安全令手机版">'.SITEHOSTSAFEMODE.'</a>，安全的版本将保证您的各项数据不被不良程序截获';
-                                    }else{
-                                        echo '如果您想使用快速的版本，请访问<a href="'.SITEHOSTSAFEMODE.'" alt="普通版战网安全令手机版">'.SITEHOSTSAFEMODE.'</a>，您可以获得较快的访问体验';
-                                    }?>
+                                    <?php
+                                    if (SSLMODE == 0) {
+                                        echo '如果您想使用安全的版本，请访问<a href="' . SITEHOSTSAFEMODE . '" alt="SSL加密版战网安全令手机版">' . SITEHOSTSAFEMODE . '</a>，安全的版本将保证您的各项数据不被不良程序截获';
+                                    } else {
+                                        echo '如果您想使用快速的版本，请访问<a href="' . SITEHOSTSAFEMODE . '" alt="普通版战网安全令手机版">' . SITEHOSTSAFEMODE . '</a>，您可以获得较快的访问体验';
+                                    }
+                                    ?>
                                 </p>  
                                 <p>
                                     我们支持CN/EU/US三大安全令颁发服务器的安全令申请。各服务器颁发的安全令的主要使用国家或地区如下：<br>
@@ -43,7 +45,7 @@ $navurladd = SITEHOST . "welcome.php";
                                     若想要使用我们的服务，请<a href="<?php echo SITEHOST ?>register.php">注册</a>或<a href="<?php echo SITEHOST ?>login.php">登入</a>您的账号
                                 </p>
                                 <p>
-                                    访问<a href="<?php echo SITEHOST ?>addauth.php">添加安全令</a>来为您的账号添加一枚安全令，访问<a href="<?php echo SITEHOST ?>auth.php">默认安全令</a>查看您设置的默认安全令。每个账号最多可以添加&nbsp;<?php echo MOST_AUTH;?>&nbsp;枚安全令<br>
+                                    访问<a href="<?php echo SITEHOST ?>addauth.php">添加安全令</a>来为您的账号添加一枚安全令，访问<a href="<?php echo SITEHOST ?>auth.php">默认安全令</a>查看您设置的默认安全令。每个账号最多可以添加&nbsp;<?php echo MOST_AUTH; ?>&nbsp;枚安全令<br>
                                     如果您已经<a href="<?php echo SITEHOST ?>login.php">登入</a>且拥有一枚<a href="<?php echo SITEHOST ?>auth.php">默认安全令</a>，那么首页将显示默认安全令的动态密码，您可以保存成书签方便今后查看<br>
                                     在安全令页面中您可以点击刷新安全令密码按钮刷新显示的动态密码与时间滚动条，点击复制安全令密码按钮复制当前的安全令密码<br><br>
                                     <img src="<?php echo SITEHOST ?>doc/img/auth.jpg" alt=""><br><br>
@@ -57,7 +59,7 @@ $navurladd = SITEHOST . "welcome.php";
                                     注册前请仔细查看<a href="<?php echo SITEHOST ?>copyright.php">版权声明与免责条款</a>，您未来可能发生的一切账号失窃事件均与本站无关，重复一遍，请<span style="color:red;">绝对</span>不要使用与您战网、魔兽世界、星际争霸II、暗黑破坏神III、炉石传说相同的密码
                                 </p>
                                 <p>
-                                     更多使用问题，请参访<a href="<?php echo SITEHOST ?>faq.php">FAQ</a><br>
+                                    更多使用问题，请参访<a href="<?php echo SITEHOST ?>faq.php">FAQ</a><br>
                                 </p>
                                 <p>
                                     请不要吐槽我COPY了战网的界面，我在CSS上的造诣基本等于0，谢谢。<br>

@@ -1,11 +1,11 @@
 <?php
 defined("ZHANGXUAN") or die("no hacker.");
 ?>
-<link rel="stylesheet" href="../../resources/css/addauth.css" type="text/css" />
-<script type="text/javascript" src="../../resources/js/bam.js"></script>
-<script type="text/javascript" src="../../resources/js/dashboard.js"></script>
-<script type="text/javascript" src="../../resources/js/addauth_ajaxcheck.js.php"></script> 
-<script type="text/javascript" src="../../resources/js/authadd.js"></script> 
+<link rel="stylesheet" href="resources/css/addauth.css" type="text/css" />
+<script type="text/javascript" src="resources/js/bam.js"></script>
+<script type="text/javascript" src="resources/js/dashboard.js"></script>
+<script type="text/javascript" src="resources/js/addauth_ajaxcheck.js"></script> 
+<script type="text/javascript" src="resources/js/authadd.js"></script> 
 <script type='text/javascript'>
     jquerycodechecked1=false;
     jquerycodechecked2=false;
@@ -155,19 +155,19 @@ defined("ZHANGXUAN") or die("no hacker.");
                                         </span><!--
                                         --><span class="input-right input-picradio">
                                             <span class="radioandpic">
-                                                <img class="spanradioimg" src="<?php echo SITEHOST; ?>resources/img/wow-32.png">
+                                                <img class="spanradioimg" src="resources/img/wow-32.png">
                                                 <input id="radiobutton" name="selectpic" type="radio" value="1" checked="true" />
                                             </span>
                                             <span class="radioandpic">
-                                                <img class="spanradioimg" src="<?php echo SITEHOST; ?>resources/img/s2-32.png">
+                                                <img class="spanradioimg" src="resources/img/s2-32.png">
                                                 <input id="radiobutton" name="selectpic" type="radio" value="2" />
                                             </span>
                                             <span class="radioandpic">
-                                                <img class="spanradioimg" src="<?php echo SITEHOST; ?>resources/img/d3-32.png">
+                                                <img class="spanradioimg" src="resources/img/d3-32.png">
                                                 <input id="radiobutton" name="selectpic" type="radio" value="3" />
                                             </span>
                                             <span class="radioandpic">
-                                                <img class="spanradioimg" src="<?php echo SITEHOST; ?>resources/img/pegasus-32.png">
+                                                <img class="spanradioimg" src="resources/img/pegasus-32.png">
                                                 <input id="radiobutton" name="selectpic" type="radio" value="4" />
                                             </span>
                                             <span class="inline-message " id="firstname-message"> </span>
@@ -310,19 +310,19 @@ defined("ZHANGXUAN") or die("no hacker.");
                                         </span><!--
                                         --><span class="input-right input-picradio">
                                             <span class="radioandpic">
-                                                <img class="spanradioimg" src="<?php echo SITEHOST; ?>resources/img/wow-32.png">
+                                                <img class="spanradioimg" src="resources/img/wow-32.png">
                                                 <input id="radiobutton2" name="selectpic" type="radio" value="1" checked="true" />
                                             </span>
                                             <span class="radioandpic">
-                                                <img class="spanradioimg" src="<?php echo SITEHOST; ?>resources/img/s2-32.png">
+                                                <img class="spanradioimg" src="resources/img/s2-32.png">
                                                 <input id="radiobutton2" name="selectpic" type="radio" value="2" />
                                             </span>
                                             <span class="radioandpic">
-                                                <img class="spanradioimg" src="<?php echo SITEHOST; ?>resources/img/d3-32.png">
+                                                <img class="spanradioimg" src="resources/img/d3-32.png">
                                                 <input id="radiobutton2" name="selectpic" type="radio" value="3" />
                                             </span>
                                             <span class="radioandpic">
-                                                <img class="spanradioimg" src="<?php echo SITEHOST; ?>resources/img/pegasus-32.png">
+                                                <img class="spanradioimg" src="resources/img/pegasus-32.png">
                                                 <input id="radiobutton" name="selectpic" type="radio" value="4" />
                                             </span>
                                             <span class="inline-message " id="firstname-message"> </span>
@@ -462,19 +462,19 @@ defined("ZHANGXUAN") or die("no hacker.");
                                         </span><!--
                                         --><span class="input-right input-picradio">
                                             <span class="radioandpic">
-                                                <img class="spanradioimg" src="<?php echo SITEHOST; ?>resources/img/wow-32.png">
+                                                <img class="spanradioimg" src="resources/img/wow-32.png">
                                                 <input id="radiobutton3" name="selectpic" type="radio" value="1" checked="true" />
                                             </span>
                                             <span class="radioandpic">
-                                                <img class="spanradioimg" src="<?php echo SITEHOST; ?>resources/img/s2-32.png">
+                                                <img class="spanradioimg" src="resources/img/s2-32.png">
                                                 <input id="radiobutton3" name="selectpic" type="radio" value="2" />
                                             </span>
                                             <span class="radioandpic">
-                                                <img class="spanradioimg" src="<?php echo SITEHOST; ?>resources/img/d3-32.png">
+                                                <img class="spanradioimg" src="resources/img/d3-32.png">
                                                 <input id="radiobutton3" name="selectpic" type="radio" value="3" />
                                             </span>
                                             <span class="radioandpic">
-                                                <img class="spanradioimg" src="<?php echo SITEHOST; ?>resources/img/pegasus-32.png">
+                                                <img class="spanradioimg" src="resources/img/pegasus-32.png">
                                                 <input id="radiobutton" name="selectpic" type="radio" value="4" />
                                             </span>
                                             <span class="inline-message " id="firstname-message"> </span>

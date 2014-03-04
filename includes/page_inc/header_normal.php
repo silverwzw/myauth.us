@@ -17,7 +17,7 @@ defined("ZHANGXUAN") or die("no hacker.");
                     }                                //未连接跳出
                     if (isset($_SESSION['loginuser']) && !empty($_SESSION['loginuser'])) {
                         $user = mysqli_real_escape_string($dbconnect, htmlspecialchars($_SESSION['loginuser']));
-                        echo "欢迎, <a href=" . SITEHOST . "account.php>" . strtoupper($user) . "</a></li><li class='top-core top-data'><a href='" . SITEHOST . "myauthall.php'>我的安全令</a></li><li class='top-core top-data'><a  onclick=\"if(confirm('若你的账号在其他电脑登录过本站,亦会一并登出,你确认要登出吗'))return true;else return false;\" href='" . SITEHOST . "logout.php'>登出</a></li><li class='top-core top-data'><a href='" . SITEHOST . "faq.php'>FAQ</a></li><li class='top-core top-final'><s>捐赠</s>";
+                        echo "欢迎，".strtoupper($user)." |<a  onclick=\"if(confirm('若你的账号在其他电脑登录过本站,亦会一并登出,你确认要登出吗'))return true;else return false;\" href='" . SITEHOST . "logout.php'>登出</a></li><li class='top-core top-data'><a href='" . SITEHOST . "account.php'>账号管理</a></li><li class='top-core top-data'><a href='" . SITEHOST . "myauthall.php'>我的安全令</a></li><li class='top-core top-final'><s>捐赠</s>";
                         $logincheck = 1;
                     } else if (isset($_COOKIE['loginname']) && isset($_COOKIE['loginid']) && $_COOKIE['loginname'] != "" && $_COOKIE['loginid'] != "") {
                         $user = mysqli_real_escape_string($dbconnect, htmlspecialchars($_COOKIE['loginname']));
@@ -29,8 +29,19 @@ defined("ZHANGXUAN") or die("no hacker.");
                             $timedifference = time() - strtotime($rowtemp['login_time']);
                             if ($timedifference <= 30 * 24 * 60 * 60) {
                                 $_SESSION['loginuser'] = $user;
-                                echo "欢迎, <a href=" . SITEHOST . "account.php>" . strtoupper($user) . "</a></li><li class='top-core top-data'><a href='" . SITEHOST . "myauthall.php'>我的安全令</a></li><li class='top-core top-data'><a  onclick=\"if(confirm('若你的账号在其他电脑登录过本站,亦会一并登出,你确认要登出吗'))return true;else return false;\" href='" . SITEHOST . "logout.php'>登出</a></li><li class='top-core top-data'><a href='" . SITEHOST . "faq.php'>FAQ</a></li><li class='top-core top-final'><s>捐赠</s>";
+                                echo "欢迎，".strtoupper($user)." |<a  onclick=\"if(confirm('若你的账号在其他电脑登录过本站,亦会一并登出,你确认要登出吗'))return true;else return false;\" href='" . SITEHOST . "logout.php'>登出</a></li><li class='top-core top-data'><a href='" . SITEHOST . "account.php'>账号管理</a></li><li class='top-core top-data'><a href='" . SITEHOST . "myauthall.php'>我的安全令</a></li><li class='top-core top-final'><s>捐赠</s>";
                                 $logincheck = 1;
+                                $userip = $_SERVER["REMOTE_ADDR"];
+                                $date = date('Y-m-d H:i:s');
+                                $sql = "UPDATE `cookiedata` SET `user_login_ip`='$userip' WHERE `user_name`='$user' AND `user_cookie` ='$cookievalue'";
+                                @mysqli_query($dbconnect, $sql);
+                                $sql = "SELECT `user_thistimelogin_ip`,`user_thislogin_time` FROM `users` WHERE `user_name`='$user'";
+                                $result = mysqli_query($dbconnect, $sql);
+                                $rowtemp = mysqli_fetch_array($result);
+                                $user_thistimelogin_ip = $rowtemp['user_thistimelogin_ip'];
+                                $user_thislogin_time = $rowtemp['user_thislogin_time'];
+                                $sql = "UPDATE `users` SET `user_lastlogin_ip`='$user_thistimelogin_ip',`user_thistimelogin_ip`='$userip',`user_lastlogin_time`='$user_thislogin_time', `user_thislogin_time`='$date' WHERE `user_name`='$user'";
+                                @mysqli_query($dbconnect, $sql);
                             } else {
                                 $sql = "DELETE FROM `cookiedata` WHERE `user_name`='$usertmp' AND `user_cookie` ='$cookievalue'";
                                 @mysqli_query($dbconnect, $sql);
@@ -77,7 +88,7 @@ defined("ZHANGXUAN") or die("no hacker.");
         </div>
         <div id="header" style="height:<?php if ($topnavvalue) echo 170;else echo 130; ?>px;">
             <div id="toplogo">
-                <a href="<?php echo SITEHOST ?>" title="首页"><img src="../resources/img/bn-logo.png" alt=""></a>
+                <a href="<?php echo SITEHOST ?>" title="首页"><img src="resources/img/bn-logo.png" alt=""></a>
             </div>
             <?php
             if ($topnavvalue) {

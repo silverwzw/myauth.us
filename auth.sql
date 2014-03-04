@@ -20,7 +20,7 @@ CREATE TABLE IF NOT EXISTS `authdata` (
   `restore_code` varchar(20) NOT NULL,
   `auth_img` int(1) NOT NULL,
   PRIMARY KEY (`auth_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
 CREATE TABLE IF NOT EXISTS `cookiedata` (
   `cookie_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
@@ -28,9 +28,10 @@ CREATE TABLE IF NOT EXISTS `cookiedata` (
   `user_name` varchar(60) CHARACTER SET ucs2 NOT NULL,
   `user_cookie` varchar(40) CHARACTER SET utf8 NOT NULL,
   `login_time` datetime NOT NULL,
+  `user_login_ip` varchar(16) CHARACTER SET utf8 NOT NULL,
   PRIMARY KEY (`cookie_id`),
   KEY `cookie_id` (`cookie_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=19 ;
 
 CREATE TABLE IF NOT EXISTS `users` (
   `user_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '用户ID',
@@ -46,6 +47,10 @@ CREATE TABLE IF NOT EXISTS `users` (
   `user_email_find_mode` int(1) NOT NULL,
   `user_psd_reset_token` varchar(80) NOT NULL,
   `user_psd_reset_token_used` int(1) NOT NULL,
+  `user_lastlogin_ip` varchar(16) CHARACTER SET utf8 NOT NULL,
+  `user_thistimelogin_ip` varchar(16) CHARACTER SET utf8 NOT NULL,
+  `user_lastlogin_time` datetime NOT NULL,
+  `user_thislogin_time` datetime NOT NULL,
   PRIMARY KEY (`user_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 

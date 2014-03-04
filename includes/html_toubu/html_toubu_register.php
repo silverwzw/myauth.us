@@ -3,7 +3,10 @@ defined("ZHANGXUAN") or die("no hacker.");
 ?>
 <!DOCTYPE html>
 <html>
-    <head> 
+    <head>
+        <script>
+            var siteaddressforalljsfile="<?php echo SITEHOST; ?>";
+        </script>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <title>战网安全令在线版-注册</title>
         <link rel="stylesheet" href="resources/css/articles.css" type="text/css" />
@@ -12,8 +15,13 @@ defined("ZHANGXUAN") or die("no hacker.");
         <link rel="stylesheet" href="resources/css/body.css" type="text/css" />
         <link rel="stylesheet" href="resources/registercss/register.css" type="text/css" />
         <link rel="stylesheet" href="resources/css/footer.css" type="text/css" />
-        <link rel="shortcut icon" type="image/x-icon" href="resources/img/favicon.ico"> 
-        <script type="text/javascript" src="resources/js/jquery-1.7.1.min.js"></script>
+        <?php
+        if (SSLMODE == 1) {
+            echo '<script type="text/javascript" src="https://lib.sinaapp.com/js/jquery/1.7.2/jquery.min.js"></script>';
+        } else {
+            echo '<script type="text/javascript" src="http://lib.sinaapp.com/js/jquery/1.7.2/jquery.min.js"></script>';
+        }
+        ?>
         <script type="text/javascript" src="resources/js/class-inheritance.js"></script>
         <script type="text/javascript" src="resources/js/inputs.js"></script>
         <script type="text/javascript" src="resources/js/streamlined-creation.js"></script>

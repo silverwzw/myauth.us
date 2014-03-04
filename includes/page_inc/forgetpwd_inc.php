@@ -1,12 +1,12 @@
 <?php
 defined("ZHANGXUAN") or die("no hacker.");
 ?>
-<link rel="stylesheet" href="../../resources/css/forgetpsd.css" type="text/css" />
-<script type="text/javascript" src="<?php echo SITEHOST ?>resources/js/forgetpwd_ajaxcheck.js.php"></script> 
-<script type="text/javascript" src="../../resources/js/class-inheritance.js"></script>
-<script type="text/javascript" src="../../resources/js/inputs.js"></script>
-<script type="text/javascript" src="../../resources/js/streamlined-creation.js"></script>
-<script type="text/javascript" src="../../resources/js/validation.js"></script>
+<link rel="stylesheet" href="resources/css/forgetpsd.css" type="text/css" />
+<script type="text/javascript" src="resources/js/forgetpwd_ajaxcheck.js"></script> 
+<script type="text/javascript" src="resources/js/class-inheritance.js"></script>
+<script type="text/javascript" src="resources/js/inputs.js"></script>
+<script type="text/javascript" src="resources/js/streamlined-creation.js"></script>
+<script type="text/javascript" src="resources/js/validation.js"></script>
 
 <div id="layout-middle">
     <div id="homewrapper">
@@ -24,7 +24,7 @@ defined("ZHANGXUAN") or die("no hacker.");
             <p>
                 请在下方输入您的注册信息以便重置您遗忘的密码。
             </p>
-            <form id="support-form" class="login-support-form" novalidate="novalidate" action="<?php echo SITEHOST;?>forgetpwd.php" method="post">
+            <form id="support-form" class="login-support-form" novalidate="novalidate" action="<?php echo SITEHOST; ?>forgetpwd.php" method="post">
                 <div class="input-row input-row-text">
                     <span class="input-left">
                         <label for="firstName">
@@ -129,7 +129,7 @@ defined("ZHANGXUAN") or die("no hacker.");
                 </div>
                 <fieldset class="ui-controls ">
                     <button class="ui-button button1" type="submit" id="support-submit" tabindex="1"><span class="button-left"><span class="button-right">继续</span></span></button>
-                    <a class="ui-cancel " href="<?php echo SITEHOST;?>">
+                    <a class="ui-cancel " href="<?php echo SITEHOST; ?>">
                         <span>
                             返回 </span>
                     </a>

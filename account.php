@@ -11,11 +11,11 @@ if ($logincheck == 0) {
 } else {
     $navurladd = SITEHOST . "account.php";
     $sql = "SELECT * FROM `users` WHERE `user_name`='$user'";
-    $result = mysqli_query($dbconnect,$sql);
+    $result = mysqli_query($dbconnect, $sql);
     $rowtemp = mysqli_fetch_array($result);
     $user_id = $rowtemp['user_id'];
-    $sql="SELECT * FROM `authdata` WHERE `user_id`='$user_id'";
-    $result = mysqli_query($dbconnect,$sql);
+    $sql = "SELECT * FROM `authdata` WHERE `user_id`='$user_id'";
+    $result = mysqli_query($dbconnect, $sql);
     $auth_total_all = mysqli_num_rows($result);
     $navurladd = SITEHOST . "account.php";
     include('includes/page_inc/account_inc.php');

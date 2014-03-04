@@ -19,9 +19,9 @@ $date = date('Y-m-d H:i:s');
 if ($logincheck == 1) {
     if (!isset($_SESSION['lastmail']) || ( isset($_SESSION['lastmail']) && !empty($_SESSION['lastmail']) && (strtotime($date) - strtotime($_SESSION['lastmail'])) >= 60 )) {
 
-        $user = mysqli_real_escape_string($dbconnect,htmlspecialchars($_SESSION['loginuser']));
+        $user = mysqli_real_escape_string($dbconnect, htmlspecialchars($_SESSION['loginuser']));
         $sql = "SELECT * FROM `users` WHERE `user_name`='$user'";
-        $result = mysqli_query( $dbconnect,$sql);
+        $result = mysqli_query($dbconnect, $sql);
         $rowtemp = mysqli_fetch_array($result);
         if ($rowtemp) {
             if ($rowtemp['user_email_checked'] == 0) {
@@ -43,45 +43,44 @@ if ($logincheck == 1) {
                         "<a href='$mailtxtcheckurl' target='_blank'>$mailtxtcheckurl</a><br><br>" .
                         "如果这不是您操作的，请忽略次邮件，绝对不要点击以上链接。<br><br>" .
                         "本邮件为自动发送，请不要回复，因为没人会看的。<br><br>" .
-                        "战网安全令在线版开发团队<br><br>" .
-			 "MyAuth.Us<br><br>" .
-                        "A.L.P.C";
-                    try {
-                        $mail = new PHPMailer(true); //创建新的邮件
+                        "竹井詩織里<br><br>" .
+                        date('Y-m-d');
+                try {
+                    $mail = new PHPMailer(true); //创建新的邮件
 
-                        $body = $mailtxt;
-                        $body = preg_replace('/\\\\/', '', $body); //替换
+                    $body = $mailtxt;
+                    $body = preg_replace('/\\\\/', '', $body); //替换
 
-                        $mail->IsSMTP();                           // 使用SMTP
-                        MOD_IXWEBHOSTING==1?$mail->SMTPAuth = false:$mail->SMTPAuth = true;                    // 启用SMTP验证 //IXWEBHOSTING使用模式1
-                        $mail->Port = SMTP_PORT;                    // 设置SMTP端口
-                        $mail->Host = SMTP_HOST; // SMTP服务器
-                        $mail->Username = SMTP_USERNAME;     // SMTP用户名
-                        $mail->Password = SMTP_PASSWD;            // SMTP 密码
-                        $mail->SMTPSecure = "ssl";
-                        //$mail->IsSendmail();  // 如果报错请取消注释
+                    $mail->IsSMTP();                           // 使用SMTP
+                    MOD_IXWEBHOSTING == 1 ? $mail->SMTPAuth = false : $mail->SMTPAuth = true;                    // 启用SMTP验证 //IXWEBHOSTING使用模式1
+                    $mail->Port = SMTP_PORT;                    // 设置SMTP端口
+                    $mail->Host = SMTP_HOST; // SMTP服务器
+                    $mail->Username = SMTP_USERNAME;     // SMTP用户名
+                    $mail->Password = SMTP_PASSWD;            // SMTP 密码
+                    $mail->SMTPSecure = "ssl";
+                    //$mail->IsSendmail();  // 如果报错请取消注释
 
-                        $mail->From = SMTP_USERNAME;
-                        $mail->FromName  = "=?utf-8?B?" . base64_encode("战网安全令在线版开发团队") . "?=";
+                    $mail->From = SMTP_USERNAME;
+                    $mail->FromName = "=?utf-8?B?" . base64_encode("竹井詩織里(战网安全令在线版)") . "?=";
 
-                        $to = $emailadd;
+                    $to = $emailadd;
 
-                        $mail->AddAddress($to);
-                        
-                        $mail->Subject    = "=?utf-8?B?" . base64_encode("战网安全令在线版邮箱验证邮件") . "?=";
-                        $mail->AltBody = "若要查看本邮件，请使用支持HTML显示的邮箱客户端"; // optional, comment out and test
-                        $mail->WordWrap = 80; // set word wrap
+                    $mail->AddAddress($to);
 
-                        $mail->MsgHTML($body);
+                    $mail->Subject = "=?utf-8?B?" . base64_encode("战网安全令在线版邮箱验证邮件") . "?=";
+                    $mail->AltBody = "若要查看本邮件，请使用支持HTML显示的邮箱客户端"; // optional, comment out and test
+                    $mail->WordWrap = 80; // set word wrap
 
-                        $mail->IsHTML(true); // send as HTML
+                    $mail->MsgHTML($body);
 
-                        $mail->Send();
-                        $_SESSION['lastmail'] = $date;
-                        echo "0";
-                    } catch (phpmailerException $e) {
-                        echo "4"; //发送失败
-                    }
+                    $mail->IsHTML(true); // send as HTML
+
+                    $mail->Send();
+                    $_SESSION['lastmail'] = $date;
+                    echo "0";
+                } catch (phpmailerException $e) {
+                    echo "4"; //发送失败
+                }
             } else {
                 echo "2"; //已经确认了
             }

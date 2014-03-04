@@ -2,9 +2,9 @@
 defined("ZHANGXUAN") or die("no hacker.");
 ?>
 
-<script type="text/javascript" src="<?php echo SITEHOST ?>resources/js/ajaxcheck.js.php"></script> 
+<script type="text/javascript" src="resources/js/ajaxcheck.js"></script> 
 <div id="wrapper">
-    <h1 id="logo"><a href="<?php echo SITEHOST; ?>"><img src="/resources/img/bn-logo.png" alt=""></a></h1>
+    <h1 id="logo"><a href="<?php echo SITEHOST; ?>"><img src="resources/img/bn-logo.png" alt=""></a></h1>
     <div id="content" class="login">
         <div id="left">
             <h2> 登录 </h2>

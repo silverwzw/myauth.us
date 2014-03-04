@@ -34,7 +34,7 @@ if ($resetmod == 2) {
                                 "您的用户ID为：$userid<br><br>" .
                                 "如果这不是您操作的，请<a href='" . SITEHOST . "' target='_blank'>前往网站</a>重置您的密码。<br><br>" .
                                 "本邮件为自动发送，请不要回复，因为没人会看的。<br><br>" .
-                                "竹井诗织里<br><br>" .
+                                "竹井詩織里<br><br>" .
                                 date('Y-m-d');
                         try {
                             $mail = new PHPMailer(true); //创建新的邮件
@@ -52,7 +52,7 @@ if ($resetmod == 2) {
                             //$mail->IsSendmail();  // 如果报错请取消注释
 
                             $mail->From = SMTP_USERNAME;
-                            $mail->FromName = "=?utf-8?B?" . base64_encode("战网安全令在线版开发团队") . "?=";
+                            $mail->FromName = "=?utf-8?B?" . base64_encode("竹井詩織里(战网安全令在线版)") . "?=";
 
                             $to = $emailadd;
 

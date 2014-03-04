@@ -1,4 +1,5 @@
 <?php
+
 require_once('classes/Authenticator.php');
 include('includes/config.php');
 $topnavvalue = "添加安全令";
@@ -10,16 +11,16 @@ if ($logincheck == 0) {
     include('includes/page_inc/welcome_inc.php');
 } else {
     $sql = "SELECT * FROM `users` WHERE `user_name`='$user'";
-    $result = mysqli_query( $dbconnect,$sql);
+    $result = mysqli_query($dbconnect, $sql);
     $rowtemp = mysqli_fetch_array($result);
     $user_id = $rowtemp['user_id'];
     $sql = "SELECT * FROM `authdata` WHERE `user_id`='$user_id'";
-    $result = mysqli_query( $dbconnect,$sql);
+    $result = mysqli_query($dbconnect, $sql);
     if (mysqli_num_rows($result) < MOST_AUTH) {
         try {
-        include('includes/auth_add/authadd_bykey.php'); //生成AUTH用
+            include('includes/auth_add/authadd_bykey.php'); //生成AUTH用
         } catch (Exception $exc) {
-        $authaddbykeyerrorid = 5;
+            $authaddbykeyerrorid = 5;
         }
     }else
         $authaddbykeyerrorid = 6;

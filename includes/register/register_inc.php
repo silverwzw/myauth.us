@@ -1,7 +1,7 @@
 <?php
 defined("ZHANGXUAN") or die("no hacker.");
 ?>
-<script type="text/javascript" src="<?php echo SITEHOST ?>resources/js/ajaxcheck.js.php"></script> 
+<script type="text/javascript" src="<?php echo SITEHOST ?>resources/js/ajaxcheck.js"></script> 
 <div id="layout-middle">
     <div id="homewrapper">
         <div id="content">

@@ -20,7 +20,7 @@ if (isset($_SESSION['loginuser']) && !empty($_SESSION['loginuser'])) {
         $timedifference = time() - strtotime($rowtemp['login_time']);
         if ($timedifference <= 30 * 24 * 60 * 60) {
             $user = $usertmp;
-        }else {
+        } else {
             $sql = "DELETE FROM `cookiedata` WHERE `user_name`='$usertmp' AND `user_cookie` ='$cookievalue'";
             @mysqli_query($dbconnect, $sql);
             setcookie("loginname", "", time() - 3600, "/");
