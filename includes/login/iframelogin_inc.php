@@ -5,6 +5,7 @@ defined("ZHANGXUAN") or die("no hacker.");
     <h1>Battle.net</h1>
 
     <form id="form" method="post" action="<?php echo SITEHOST ?>iframelogin.php">
+        <a id="embedded-close" href="javascript:;" onclick="closeiframe()"></a>
         <p><label class="label" for="accountName"> 用户名 </label>
             <input id="accountName" 
             <?php
