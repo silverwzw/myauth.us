@@ -6,9 +6,11 @@ defined("ZHANGXUAN") or die("no hacker.");
     <head> 
         <script>
             var siteaddressforalljsfile="<?php echo SITEHOST; ?>";
+            var ifnotloginiframecanchangethisvalue=false;
+            Login.embeddedUrl = '<?php echo SITEHOST?>/iframelogin.php';
         </script>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <title>战网安全令在线版-<?php echo $topnavvalue ?></title>
+        <title><?php echo TITLENAME . "-$topnavvalue" ?></title>
         <link rel="stylesheet" href="resources/css/articles.css" type="text/css" />
         <link rel="stylesheet" href="resources/css/header.css" type="text/css" />
         <link rel="stylesheet" href="resources/css/body.css" type="text/css" />
@@ -21,8 +23,7 @@ defined("ZHANGXUAN") or die("no hacker.");
             echo '<script type="text/javascript" src="http://lib.sinaapp.com/js/jquery/1.7.2/jquery.min.js"></script>';
         }
         ?>
-        <link rel="shortcut icon" type="image/x-icon" href="resources/img/favicon.ico"> 
-
+        <script type="text/javascript" src="resources/js/common.js"></script>
+        <script type="text/javascript" src="resources/js/third-party.js"></script>
     </head>
-
     <body>

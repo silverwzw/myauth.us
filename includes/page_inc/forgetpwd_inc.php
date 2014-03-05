@@ -116,12 +116,26 @@ defined("ZHANGXUAN") or die("no hacker.");
                                         var img = document.images['sec-string'];
                                         img.src = img.src.substring(0,img.src.lastIndexOf("?"))+"?rand="+Math.random()*1000;
                                     }
+                                    
+                                    jquerycodechecked=false;
+                                    //<![CDATA[
+                                    $(document).ready(function(){
+                                        $("#letters_code").keyup(function(){
+                                            if($("#letters_code")[0].value.length==6){
+                                                checkyanzhenma($("#letters_code")[0].value);
+                                                jquerycodechecked=true;
+                                            }else{
+                                                jquerycodechecked=false;
+                                                document.getElementById('checkyanzhenmaajax').innerHTML = "";
+                                            }
+                                        });
+                                    });
                                 </script> 
                             </div><span class="input-static input-static-extra-large"><span class="static"><p><label class="label" for="yanzhenma">
                                             出于安全性考虑，请输入上方图示中的字符。（这并不是您的密码）</label></p></span></span>
                         </div>
                         <span class="input-text input-text-small">
-                            <input type="text" name="letters_code" value="" onblur="checkyanzhenma(this.value);" id="letters_code" class="small border-5 glow-shadow-2" autocomplete="off" onpaste="return false;" maxlength="6" tabindex="1" required="required" placeholder="输入验证码" />
+                            <input type="text" name="letters_code" value="" onblur="if(!jquerycodechecked){checkyanzhenma(this.value);}" id="letters_code" class="small border-5 glow-shadow-2" autocomplete="off" onpaste="return false;" maxlength="6" tabindex="1" required="required" placeholder="输入验证码" />
                             <span id="checkyanzhenmaajax"></span>
                             <span class="inline-message " id="emailAddress-message"> </span>
                         </span>

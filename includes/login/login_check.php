@@ -4,9 +4,6 @@ defined("ZHANGXUAN") or die("no hacker.");
 session_start();
 $logincheck = 0;
 $loginerrorid = -1;
-if (!$dbconnect) {
-    die("数据库连接错误，请联系管理员同志~~");
-}
 if (isset($_POST['username']) && isset($_POST['password']) && !isset($_POST['letters_code'])) {
     $loginerrorid = 2; //验证码输入错误
 } else if (isset($_POST['letters_code']) && md5(strtolower($_POST['letters_code'])) != $_SESSION['letters_code']) {
@@ -26,10 +23,10 @@ if (isset($_POST['username']) && isset($_POST['password']) && !isset($_POST['let
             $cookievalue = randstr();
             $rowtemp = mysqli_fetch_array($result);
             $user_id = $rowtemp['user_id'];
-            $user_thistimelogin_ip=$rowtemp['user_thistimelogin_ip'];
-            $user_thislogin_time=$rowtemp['user_thislogin_time'];
+            $user_thistimelogin_ip = $rowtemp['user_thistimelogin_ip'];
+            $user_thislogin_time = $rowtemp['user_thislogin_time'];
             $login_time = date('Y-m-d H:i:s');
-            $userip=$_SERVER["REMOTE_ADDR"];
+            $userip = $_SERVER["REMOTE_ADDR"];
             $sql = "INSERT INTO `cookiedata`(`user_id`, `user_name`, `user_cookie`, `login_time`,`user_login_ip`) VALUES ('$user_id','$user','$cookievalue','$login_time','$userip')";
             @mysqli_query($dbconnect, $sql);
             $sql = "UPDATE `users` SET `user_lastlogin_ip`='$user_thistimelogin_ip',`user_thistimelogin_ip`='$userip',`user_lastlogin_time`='$user_thislogin_time', `user_thislogin_time`='$login_time' WHERE `user_id`='$user_id'";
@@ -41,8 +38,8 @@ if (isset($_POST['username']) && isset($_POST['password']) && !isset($_POST['let
     $_SESSION['letters_code'] = rand();
 } else if (isset($_SESSION['loginuser']) && !empty($_SESSION['loginuser'])) {
     $logincheck = 1;
-} elseif ($_COOKIE['loginname'] != "" && $_COOKIE['loginid'] != "") {
-    $user = mysqli_real_escape_string($dbconnect, htmlspecialchars($_COOKIE['loginname'], ENT_QUOTES));
+} elseif (isset($_COOKIE['loginname']) && isset($_COOKIE['loginid']) && $_COOKIE['loginname'] != "" && $_COOKIE['loginid'] != "") {
+    $user = mysqli_real_escape_string($dbconnect, htmlspecialchars($_COOKIE['loginname']));
     $cookievalue = mysqli_real_escape_string($dbconnect, htmlspecialchars($_COOKIE['loginid'], ENT_QUOTES));
     $sql = "SELECT * FROM `cookiedata` WHERE `user_name`='$user' AND `user_cookie` ='$cookievalue'";
     $result = mysqli_query($dbconnect, $sql);
@@ -50,8 +47,19 @@ if (isset($_POST['username']) && isset($_POST['password']) && !isset($_POST['let
         $rowtemp = mysqli_fetch_array($result);
         $timedifference = time() - strtotime($rowtemp['login_time']);
         if ($timedifference <= 30 * 24 * 60 * 60) {
-            $_SESSION['loginuser'] = $_COOKIE['loginname'];
+            $_SESSION['loginuser'] = $user;
             $logincheck = 1;
+            $userip = $_SERVER["REMOTE_ADDR"];
+            $date = date('Y-m-d H:i:s');
+            $sql = "UPDATE `cookiedata` SET `user_login_ip`='$userip' WHERE `user_name`='$user' AND `user_cookie` ='$cookievalue'";
+            @mysqli_query($dbconnect, $sql);
+            $sql = "SELECT `user_thistimelogin_ip`,`user_thislogin_time` FROM `users` WHERE `user_name`='$user'";
+            $result = mysqli_query($dbconnect, $sql);
+            $rowtemp = mysqli_fetch_array($result);
+            $user_thistimelogin_ip = $rowtemp['user_thistimelogin_ip'];
+            $user_thislogin_time = $rowtemp['user_thislogin_time'];
+            $sql = "UPDATE `users` SET `user_lastlogin_ip`='$user_thistimelogin_ip',`user_thistimelogin_ip`='$userip',`user_lastlogin_time`='$user_thislogin_time', `user_thislogin_time`='$date' WHERE `user_name`='$user'";
+            @mysqli_query($dbconnect, $sql);
         } else {
             $sql = "DELETE FROM `cookiedata` WHERE `user_name`='$user' AND `user_cookie` ='$cookievalue'";
             @mysqli_query($dbconnect, $sql);

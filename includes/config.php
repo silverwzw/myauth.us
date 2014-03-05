@@ -62,6 +62,18 @@ if(is_SSL()){
     define("SITEHOSTSAFEMODE", "https://myauth.us/");
 }
 
+
+define("TITLENAME", "战网安全令");
+
+/* * 微博分享内容* */
+//4个KEY
+define("SINAKEY", "11111");
+define("TENCENTKEY", "1111");
+define("SOHUKEY", "111fafas");
+define("NETEASEKEY", "23121321321312");
+define("WEIBOMESSAGE", "战网安全令在线版,轻松生成/还原战网安全令,支持US/EU/CN系列安全令,随时随地获取安全令动态密码,再也不用担心将军令丢了不能玩游戏了!");
+
+
 $dbconnect = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME); //连接数据库
 @mysqli_select_db($dbconnect, DB_NAME);
 ?>

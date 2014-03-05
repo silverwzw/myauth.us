@@ -112,7 +112,7 @@ defined("ZHANGXUAN") or die("no hacker.");
             <h2>
                 需要账号？
             </h2><h3>
-                注册战网安全令在线版账号，简单且免费，即可享受随时随地地安全令密码提取系统！
+                注册战网安全令在线版账号，简单且免费，即可享受随时随地的安全令动态密码提取系统！
             </h3>
 
             <a class="ui-button button1" href="<?php echo SITEHOST ?>register.php"><span class="button-left"><span class="button-right">

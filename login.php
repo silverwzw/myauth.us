@@ -2,7 +2,7 @@
 
 include('includes/config.php');
 include('includes/html_toubu/html_toubu_login.php');
-include('includes/login/logincheck.php');
+include('includes/login/login_check.php');
 if ($logincheck == 1)
     include('includes/login/login_checked.php');
 else

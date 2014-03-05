@@ -26,6 +26,8 @@ if ($resetmod == 2) {
                             $cookievalue = mysqli_real_escape_string($dbconnect, htmlspecialchars($_COOKIE['loginid'], ENT_QUOTES));
                             $sql = "DELETE FROM `cookiedata` WHERE `user_name`='$usertmp' AND `user_cookie` ='$cookievalue'";
                             @mysqli_query($dbconnect, $sql);
+                        }if (isset($_SESSION['loginuser']) && $_SESSION['loginuser'] != "") {
+                            unset($_SESSION['loginuser']);
                         }
                         $resetpsdpostdataerror = 0;
                         $user = $row['user_name'];

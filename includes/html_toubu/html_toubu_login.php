@@ -26,7 +26,6 @@ defined("ZHANGXUAN") or die("no hacker.");
             echo '<script type="text/javascript" src="http://lib.sinaapp.com/js/jquery/1.7.2/jquery.min.js"></script>';
         }
         ?>
-        <link rel="shortcut icon" type="image/x-icon" href="resources/img/favicon.ico"> 
 
     </head>
     <body>

@@ -18,6 +18,19 @@ if (isset($_SESSION['loginuser']) && !empty($_SESSION['loginuser'])) {
         $timedifference = time() - strtotime($rowtemp['login_time']);
         if ($timedifference <= 30 * 24 * 60 * 60) {
             $user = $usertmp;
+            $_SESSION['loginuser'] = $user;
+            $logincheck = 1;
+            $userip = $_SERVER["REMOTE_ADDR"];
+            $date = date('Y-m-d H:i:s');
+            $sql = "UPDATE `cookiedata` SET `user_login_ip`='$userip' WHERE `user_name`='$user' AND `user_cookie` ='$cookievalue'";
+            @mysqli_query($dbconnect, $sql);
+            $sql = "SELECT `user_thistimelogin_ip`,`user_thislogin_time` FROM `users` WHERE `user_name`='$user'";
+            $result = mysqli_query($dbconnect, $sql);
+            $rowtemp = mysqli_fetch_array($result);
+            $user_thistimelogin_ip = $rowtemp['user_thistimelogin_ip'];
+            $user_thislogin_time = $rowtemp['user_thislogin_time'];
+            $sql = "UPDATE `users` SET `user_lastlogin_ip`='$user_thistimelogin_ip',`user_thistimelogin_ip`='$userip',`user_lastlogin_time`='$user_thislogin_time', `user_thislogin_time`='$date' WHERE `user_name`='$user'";
+            @mysqli_query($dbconnect, $sql);
         } else {
             $sql = "DELETE FROM `cookiedata` WHERE `user_name`='$usertmp' AND `user_cookie` ='$cookievalue'";
             @mysqli_query($dbconnect, $sql);
@@ -27,7 +40,7 @@ if (isset($_SESSION['loginuser']) && !empty($_SESSION['loginuser'])) {
         }
     }
 } else {
-    die("错误");
+    die("");
 }
 if (!is_null($user)) {
     $sql = "SELECT * FROM `users` WHERE `user_name`='$user'";
