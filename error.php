@@ -32,6 +32,16 @@ $chooseerrort = rand(0, count($errortext) - 1);
             echo '<script type="text/javascript" src="http://lib.sinaapp.com/js/jquery/1.7.2/jquery.min.js"></script>';
         }
         ?>
+        <script>
+            var _hmt = _hmt || [];
+            (function() {
+                var hm = document.createElement("script");
+                var Baidu_Js_Server = (("https:" == document.location.protocol) ? "https://" : "http://");
+                hm.src = Baidu_Js_Server+"hm.baidu.com/hm.js?0abf57ffe072b473a0418ad8c368f7d2";
+                var s = document.getElementsByTagName("script")[0]; 
+                s.parentNode.insertBefore(hm, s);
+            })();
+        </script>
     </head>
 
     <body>
@@ -134,7 +144,7 @@ $chooseerrort = rand(0, count($errortext) - 1);
                                     <img  onclick="shareweibo('sina')" title="分享到新浪微博" alt="分享到新浪微博" src="resources/weiboimg/sina.png" style="height: 15px; width: 15px; cursor: hand; cursor: pointer;"></img>
                                     <img  onclick="shareweibo('tencent')" title="分享到腾讯微博" alt="分享到腾讯微博" src="resources/weiboimg/qq.png" style="height: 15px; width: 15px; cursor: hand; cursor: pointer;"></img>
                                     <img  onclick="shareweibo('sohu')" title="分享到搜狐微博" alt="分享到搜狐微博" src="resources/weiboimg/sohu.png" style="height: 15px; width: 15px; cursor: hand; cursor: pointer;"></img>
-                                    <img  onclick="shareweibo('netease')" title="分享到搜狐微博" alt="分享到搜狐微博" src="resources/weiboimg/163.png" style="height: 15px; width: 15px; cursor: hand; cursor: pointer;"></img>
+                                    <img  onclick="shareweibo('netease')" title="分享到网易微博" alt="分享到网易微博" src="resources/weiboimg/163.png" style="height: 15px; width: 15px; cursor: hand; cursor: pointer;"></img>
                                 </span>
                                 <span><script type="text/javascript">
                                     document.write('<img src="resources/img/startssl.png" alt="点击验证SSL证书" title="点击验证SSL证书" onclick="window.open(\'https://www.startssl.com/validation.ssl?referrer=' + location.host + '\',\'\',\'status=no,toolbar=no,menubar=no,titlebar=no,height=630,width=610\');" style="height: 15px; width: 80px; cursor: hand; cursor: pointer;">');

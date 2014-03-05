@@ -80,7 +80,7 @@ $auth_count = $rowtemp[0];
                             <img  onclick="shareweibo('sina')" title="分享到新浪微博" alt="分享到新浪微博" src="resources/weiboimg/sina.png" style="height: 15px; width: 15px; cursor: hand; cursor: pointer;"></img>
                             <img  onclick="shareweibo('tencent')" title="分享到腾讯微博" alt="分享到腾讯微博" src="resources/weiboimg/qq.png" style="height: 15px; width: 15px; cursor: hand; cursor: pointer;"></img>
                             <img  onclick="shareweibo('sohu')" title="分享到搜狐微博" alt="分享到搜狐微博" src="resources/weiboimg/sohu.png" style="height: 15px; width: 15px; cursor: hand; cursor: pointer;"></img>
-                            <img  onclick="shareweibo('netease')" title="分享到搜狐微博" alt="分享到搜狐微博" src="resources/weiboimg/163.png" style="height: 15px; width: 15px; cursor: hand; cursor: pointer;"></img>
+                            <img  onclick="shareweibo('netease')" title="分享到网易微博" alt="分享到网易微博" src="resources/weiboimg/163.png" style="height: 15px; width: 15px; cursor: hand; cursor: pointer;"></img>
                         </span>
                         <span><script type="text/javascript">
                             document.write('<img src="resources/img/startssl.png" alt="点击验证SSL证书" title="点击验证SSL证书" onclick="window.open(\'https://www.startssl.com/validation.ssl?referrer=' + location.host + '\',\'\',\'status=no,toolbar=no,menubar=no,titlebar=no,height=630,width=610\');" style="height: 15px; width: 80px; cursor: hand; cursor: pointer;">');
