@@ -7,7 +7,6 @@ defined("ZHANGXUAN") or die("no hacker.");
         <script>
             var siteaddressforalljsfile="<?php echo SITEHOST; ?>";
             var ifnotloginiframecanchangethisvalue=false;
-            Login.embeddedUrl = '<?php echo SITEHOST?>/iframelogin.php';
         </script>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <title><?php echo TITLENAME . "-$topnavvalue" ?></title>
@@ -25,5 +24,18 @@ defined("ZHANGXUAN") or die("no hacker.");
         ?>
         <script type="text/javascript" src="resources/js/common.js"></script>
         <script type="text/javascript" src="resources/js/third-party.js"></script>
+        <script type="text/javascript">
+            Login.embeddedUrl = '<?php echo SITEHOST ?>iframelogin.php';
+        </script>
+        <script type="text/javascript">
+            var _hmt = _hmt || [];
+            (function() {
+                var hm = document.createElement("script");
+                var Baidu_Js_Server = (("https:" == document.location.protocol) ? "https://" : "http://");
+                hm.src = Baidu_Js_Server+"hm.baidu.com/hm.js?0abf57ffe072b473a0418ad8c368f7d2";
+                var s = document.getElementsByTagName("script")[0]; 
+                s.parentNode.insertBefore(hm, s);
+            })();
+        </script>
     </head>
     <body>

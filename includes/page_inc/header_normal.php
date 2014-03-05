@@ -44,15 +44,15 @@ defined("ZHANGXUAN") or die("no hacker.");
                                 @mysqli_query($dbconnect, $sql);
                                 setcookie("loginname", "", time() - 3600, "/");
                                 setcookie("loginid", "", time() - 3600, "/");
-                                echo "<a href='" . SITEHOST . "login.php'>登入</a> 或 <a href='" . SITEHOST . "register.php'>注册一个账号</a></li><li class='top-core top-data'><a href='" . SITEHOST . "faq.php'>FAQ</a></li><li class='top-core top-data'><a href='" . SITEHOST . "account.php'>账号管理</a></li><li class='top-core top-final'><s>捐赠</s>(暂时不需要)";
-                            }
+                                echo "<a href='login.php' onclick='return Login.open()'>登入</a> 或 <a href='" . SITEHOST . "register.php'>注册一个账号</a></li><li class='top-core top-data'><a href='" . SITEHOST . "faq.php'>FAQ</a></li><li class='top-core top-data'><a href='" . SITEHOST . "account.php'>账号管理</a></li><li class='top-core top-final'><s>捐赠</s>(暂时不需要)";
+                    }
                         } else {
                             setcookie("loginname", "", time() - 3600, "/");
                             setcookie("loginid", "", time() - 3600, "/");
-                            echo "<a href='" . SITEHOST . "login.php'>登入</a> 或 <a href='" . SITEHOST . "register.php'>注册一个账号</a></li><li class='top-core top-data'><a href='" . SITEHOST . "faq.php'>FAQ</a></li><li class='top-core top-data'><a href='" . SITEHOST . "account.php'>账号管理</a></li><li class='top-core top-final'><s>捐赠</s>(暂时不需要)";
-                        }
+                            echo "<a href='login.php' onclick='return Login.open()'>登入</a> 或 <a href='" . SITEHOST . "register.php'>注册一个账号</a></li><li class='top-core top-data'><a href='" . SITEHOST . "faq.php'>FAQ</a></li><li class='top-core top-data'><a href='" . SITEHOST . "account.php'>账号管理</a></li><li class='top-core top-final'><s>捐赠</s>(暂时不需要)";
+                    }
                     } else {
-                        echo "<a href='?login' onclick='return Login.open()'>登入</a> 或 <a href='" . SITEHOST . "register.php'>注册一个账号</a></li><li class='top-core top-data'><a href='" . SITEHOST . "faq.php'>FAQ</a></li><li class='top-core top-data'><a href='" . SITEHOST . "account.php'>账号管理</a></li><li class='top-core top-final'><s>捐赠</s>(暂时不需要)";
+                        echo "<a href='login.php' onclick='return Login.open()'>登入</a> 或 <a href='" . SITEHOST . "register.php'>注册一个账号</a></li><li class='top-core top-data'><a href='" . SITEHOST . "faq.php'>FAQ</a></li><li class='top-core top-data'><a href='" . SITEHOST . "account.php'>账号管理</a></li><li class='top-core top-final'><s>捐赠</s>(暂时不需要)";
                     }
                     if (isset($_GET['authid'])) {
                         if ($logincheck == 1) {
